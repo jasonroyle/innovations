@@ -37,7 +37,7 @@ const reducer = createReducer(
     loaded: false
   })),
   on(VehiclesActions.loadVehiclesSuccess, (state, { vehicles }) =>
-    vehiclesAdapter.setAll(vehicles, { ...state, loaded: true })
+    vehiclesAdapter.upsertMany(vehicles, { ...state, loaded: true })
   ),
   on(VehiclesActions.loadVehiclesFailure, (state, { error }) => ({
     ...state,
