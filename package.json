@@ -34,6 +34,7 @@
     "@angular/compiler-cli": "~17.3.0",
     "@angular/language-service": "~17.3.0",
     "@ngrx/schematics": "~17.0.0",
+    "@ngrx/store-devtools": "~17.0.0",
     "@nx/devkit": "19.0.6",
     "@nx/eslint": "19.0.6",
     "@nx/eslint-plugin": "19.0.6",
