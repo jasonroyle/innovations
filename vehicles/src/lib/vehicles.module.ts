@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import * as fromVehicles from './+state/vehicles.reducer';
 import { VehiclesEffects } from './+state/vehicles.effects';
 import { VehiclesFacade } from './+state/vehicles.facade';
+import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 
 @NgModule({
   imports: [
@@ -19,5 +20,6 @@ import { VehiclesFacade } from './+state/vehicles.facade';
     EffectsModule.forFeature([VehiclesEffects]),
   ],
   providers: [VehiclesFacade],
+  declarations: [VehicleListComponent],
 })
 export class VehiclesModule {}
