@@ -8,6 +8,7 @@ import * as VehiclesSelectors from './vehicles.selectors';
 @Injectable()
 export class VehiclesFacade {
   private readonly store = inject(Store);
+  public readonly actions = VehiclesActions.publicActions;
 
   /**
    * Combine pieces of state using createSelector,
@@ -23,5 +24,9 @@ export class VehiclesFacade {
    */
   init() {
     this.store.dispatch(VehiclesActions.initVehicles());
+  }
+
+  dispatch(action: Action) {
+    return this.store.dispatch(action);
   }
 }

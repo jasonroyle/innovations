@@ -32,11 +32,16 @@ const reducer = createReducer(
     loaded: false,
     error: null,
   })),
+  on(VehiclesActions.vehicleListLoadVehicles, (state) => ({
+    ...state,
+    loaded: false
+  })),
   on(VehiclesActions.loadVehiclesSuccess, (state, { vehicles }) =>
     vehiclesAdapter.setAll(vehicles, { ...state, loaded: true })
   ),
   on(VehiclesActions.loadVehiclesFailure, (state, { error }) => ({
     ...state,
+    loaded: true,
     error,
   }))
 );

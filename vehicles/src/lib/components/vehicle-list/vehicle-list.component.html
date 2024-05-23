@@ -1,1 +1,11 @@
-<p>vehicle-list works!</p>
+<h2>Vehicles</h2>
+
+<ul>
+  @for (vehicle of vehicles$ | async; track vehicle.id) {
+  <li><pre>{{ vehicle | json }}</pre></li>
+  }
+</ul>
+
+<button type="button" (click)="loadVehicles()">
+  Load Vehicles
+</button>

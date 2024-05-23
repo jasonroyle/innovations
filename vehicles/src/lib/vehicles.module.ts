@@ -8,6 +8,7 @@ import * as fromVehicles from './+state/vehicles.reducer';
 import { VehiclesEffects } from './+state/vehicles.effects';
 import { VehiclesFacade } from './+state/vehicles.facade';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
+import { VehiclesService } from './services/vehicles.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { VehicleListComponent } from './components/vehicle-list/vehicle-list.com
     ),
     EffectsModule.forFeature([VehiclesEffects]),
   ],
-  providers: [VehiclesFacade],
+  providers: [VehiclesFacade, VehiclesService],
   declarations: [VehicleListComponent],
 })
 export class VehiclesModule {}
