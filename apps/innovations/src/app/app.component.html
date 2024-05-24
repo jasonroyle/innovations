@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<nav>
+  @for (navItem of navItems; track navItem.text) {
+  <a [routerLink]="navItem.commands" routerLinkActive="active">{{ navItem.text }}</a>
+  }
+</nav>
+
+<div class="page">
+  <router-outlet></router-outlet>
+</div>
