@@ -8,7 +8,7 @@ import { VehiclesFacade } from '../../+state/vehicles.facade';
 })
 export class VehicleListComponent {
   private readonly _vehiclesFacade = inject(VehiclesFacade);
-  public readonly vehicles$ = this._vehiclesFacade.allVehicles$;
+  public readonly vehicles$ = this._vehiclesFacade.allVehiclesWithManufacturers$;
 
   public loadVehicles(): void {
     this._vehiclesFacade.dispatch(

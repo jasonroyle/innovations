@@ -5,7 +5,7 @@ function mockManufacturers(): Manufacturer[] {
   return [
     {
       id: '1',
-      name: 'VolksWagen'
+      name: 'Volkswagen'
     },
     {
       id: '2',

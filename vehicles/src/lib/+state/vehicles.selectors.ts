@@ -1,4 +1,6 @@
+import { selectManufacturersEntities } from '@codeweavers/manufacturers';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+
 import {
   VEHICLES_FEATURE_KEY,
   VehiclesState,
@@ -40,4 +42,11 @@ export const selectEntity = createSelector(
   selectVehiclesEntities,
   selectSelectedId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
+);
+
+export const selectAllVehiclesWithManufacturers = createSelector(
+  selectAllVehicles,
+  selectManufacturersEntities,
+  (vehicles, manufacturers) =>
+    vehicles.map(vehicle => ({ ...vehicle, manufacturer: manufacturers[vehicle.manufacturerId] }))
 );

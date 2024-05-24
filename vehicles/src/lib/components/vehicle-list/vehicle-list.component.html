@@ -2,7 +2,10 @@
 
 <ul>
   @for (vehicle of vehicles$ | async; track vehicle.id) {
-  <li><pre>{{ vehicle | json }}</pre></li>
+  <li>
+    <h3>{{ vehicle.manufacturer?.name }} {{ vehicle.model }}</h3>
+    <pre>{{ vehicle | json }}</pre>
+  </li>
   }
 </ul>
 

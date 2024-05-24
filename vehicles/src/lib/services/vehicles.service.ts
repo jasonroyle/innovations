@@ -2,17 +2,31 @@ import { Injectable } from '@angular/core';
 import { LoadVehicleParams } from '../models/load-vehicles-params';
 import { Vehicle } from '../models/vehicle';
 
-function vehiclesMock(): Vehicle[] {
+function mockVehicleId(max = 10): string {
+  return `${Math.ceil(Math.random() * max)}`;
+}
+
+function mockVehicles(): Vehicle[] {
   return [
     {
-      id: `${Math.ceil(Math.random() * 10)}`,
-      make: 'VolksWagen',
+      id: mockVehicleId(),
+      manufacturerId: '1',
       model: 'Scirocco'
     },
     {
-      id: `${Math.ceil(Math.random() * 10)}`,
-      make: 'VolksWagen',
+      id: mockVehicleId(),
+      manufacturerId: '1',
       model: 'Golf'
+    },
+    {
+      id: mockVehicleId(),
+      manufacturerId: '2',
+      model: '430i'
+    },
+    {
+      id: mockVehicleId(),
+      manufacturerId: '3',
+      model: 'Veyron'
     }
   ];
 }
@@ -20,6 +34,6 @@ function vehiclesMock(): Vehicle[] {
 @Injectable()
 export class VehiclesService {
   public loadVehicles(params: LoadVehicleParams): Vehicle[] {
-    return [...vehiclesMock()];
+    return [...mockVehicles()];
   }
 }
