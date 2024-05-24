@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@codeweavers/manufacturers": ["manufacturers/src/index.ts"],
       "@codeweavers/vehicles": ["vehicles/src/index.ts"]
     }
   },
