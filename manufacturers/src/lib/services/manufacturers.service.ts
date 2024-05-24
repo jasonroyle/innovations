@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { LoadManufacturersParams } from '../models/load-manufacturers-params';
 import { Manufacturer } from '../models/manufacturer';
 
 function mockManufacturers(): Manufacturer[] {
@@ -21,7 +20,7 @@ function mockManufacturers(): Manufacturer[] {
 
 Injectable()
 export class ManufacturersService {
-  loadManufacturers(params: LoadManufacturersParams): Manufacturer[] {
+  loadManufacturers(): Manufacturer[] {
     return mockManufacturers();
   }
 }

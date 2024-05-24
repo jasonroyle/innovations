@@ -33,16 +33,9 @@ const reducer = createReducer(
     error: null,
   })),
   on(
-    ManufacturersActions.showroomLoadManufacturers,
-    (state) => ({
-      ...state,
-      loaded: false
-    })
-  ),
-  on(
     ManufacturersActions.loadManufacturersSuccess,
     (state, { manufacturers }) =>
-      manufacturersAdapter.upsertMany(manufacturers, { ...state, loaded: true })
+      manufacturersAdapter.setAll(manufacturers, { ...state, loaded: true })
   ),
   on(ManufacturersActions.loadManufacturersFailure, (state, { error }) => ({
     ...state,
