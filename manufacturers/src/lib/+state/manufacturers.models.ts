@@ -1,7 +1,6 @@
+import { Manufacturer } from '../models/manufacturer';
+
 /**
  * Interface for the 'Manufacturers' data
  */
-export interface ManufacturersEntity {
-  id: string | number; // Primary ID
-  name: string;
-}
+export type ManufacturersEntity = Manufacturer;
