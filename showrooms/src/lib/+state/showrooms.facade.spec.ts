@@ -4,26 +4,26 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule, Store } from '@ngrx/store';
 import { readFirst } from '@nx/angular/testing';
 
-import * as ShowroomActions from './showroom.actions';
-import { ShowroomEffects } from './showroom.effects';
-import { ShowroomFacade } from './showroom.facade';
-import { ShowroomEntity } from './showroom.models';
+import * as ShowroomsActions from './showrooms.actions';
+import { ShowroomsEffects } from './showrooms.effects';
+import { ShowroomsFacade } from './showrooms.facade';
+import { ShowroomsEntity } from './showrooms.models';
 import {
-  SHOWROOM_FEATURE_KEY,
-  ShowroomState,
-  initialShowroomState,
-  showroomReducer,
-} from './showroom.reducer';
-import * as ShowroomSelectors from './showroom.selectors';
+  SHOWROOMS_FEATURE_KEY,
+  ShowroomsState,
+  initialShowroomsState,
+  showroomsReducer,
+} from './showrooms.reducer';
+import * as ShowroomsSelectors from './showrooms.selectors';
 
 interface TestSchema {
-  showroom: ShowroomState;
+  showrooms: ShowroomsState;
 }
 
-describe('ShowroomFacade', () => {
-  let facade: ShowroomFacade;
+describe('ShowroomsFacade', () => {
+  let facade: ShowroomsFacade;
   let store: Store<TestSchema>;
-  const createShowroomEntity = (id: string, name = ''): ShowroomEntity => ({
+  const createShowroomsEntity = (id: string, name = ''): ShowroomsEntity => ({
     id,
     name: name || `name-${id}`,
   });
@@ -32,10 +32,10 @@ describe('ShowroomFacade', () => {
     beforeEach(() => {
       @NgModule({
         imports: [
-          StoreModule.forFeature(SHOWROOM_FEATURE_KEY, showroomReducer),
-          EffectsModule.forFeature([ShowroomEffects]),
+          StoreModule.forFeature(SHOWROOMS_FEATURE_KEY, showroomsReducer),
+          EffectsModule.forFeature([ShowroomsEffects]),
         ],
-        providers: [ShowroomFacade],
+        providers: [ShowroomsFacade],
       })
       class CustomFeatureModule {}
 
@@ -50,14 +50,14 @@ describe('ShowroomFacade', () => {
       TestBed.configureTestingModule({ imports: [RootModule] });
 
       store = TestBed.inject(Store);
-      facade = TestBed.inject(ShowroomFacade);
+      facade = TestBed.inject(ShowroomsFacade);
     });
 
     /**
      * The initially generated facade::loadAll() returns empty array
      */
     it('loadAll() should return empty list with loaded == true', async () => {
-      let list = await readFirst(facade.allShowroom$);
+      let list = await readFirst(facade.allShowrooms$);
       let isLoaded = await readFirst(facade.loaded$);
 
       expect(list.length).toBe(0);
@@ -65,7 +65,7 @@ describe('ShowroomFacade', () => {
 
       facade.init();
 
-      list = await readFirst(facade.allShowroom$);
+      list = await readFirst(facade.allShowrooms$);
       isLoaded = await readFirst(facade.loaded$);
 
       expect(list.length).toBe(0);
@@ -73,22 +73,25 @@ describe('ShowroomFacade', () => {
     });
 
     /**
-     * Use `loadShowroomSuccess` to manually update list
+     * Use `loadShowroomsSuccess` to manually update list
      */
-    it('allShowroom$ should return the loaded list; and loaded flag == true', async () => {
-      let list = await readFirst(facade.allShowroom$);
+    it('allShowrooms$ should return the loaded list; and loaded flag == true', async () => {
+      let list = await readFirst(facade.allShowrooms$);
       let isLoaded = await readFirst(facade.loaded$);
 
       expect(list.length).toBe(0);
       expect(isLoaded).toBe(false);
 
       store.dispatch(
-        ShowroomActions.loadShowroomSuccess({
-          showroom: [createShowroomEntity('AAA'), createShowroomEntity('BBB')],
+        ShowroomsActions.loadShowroomsSuccess({
+          showrooms: [
+            createShowroomsEntity('AAA'),
+            createShowroomsEntity('BBB'),
+          ],
         })
       );
 
-      list = await readFirst(facade.allShowroom$);
+      list = await readFirst(facade.allShowrooms$);
       isLoaded = await readFirst(facade.loaded$);
 
       expect(list.length).toBe(2);

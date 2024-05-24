@@ -2,9 +2,9 @@ import { Route } from '@angular/router';
 
 export const appRoutes: Route[] = [
   {
-    path: 'showroom',
+    path: 'showrooms',
     loadChildren: () =>
-      import('@codeweavers/showroom').then((m) => m.ShowroomModule),
+      import('@codeweavers/showrooms').then((m) => m.ShowroomsModule),
   },
   {
     path: 'manufacturers',

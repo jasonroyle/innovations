@@ -1,5 +1,9 @@
 <h2>Vehicles</h2>
 
+<button type="button" (click)="loadVehicles()">
+  Load Vehicles
+</button>
+
 <ul>
   @for (vehicle of vehicles$ | async; track vehicle.id) {
   <li>
@@ -8,7 +12,3 @@
   </li>
   }
 </ul>
-
-<button type="button" (click)="loadVehicles()">
-  Load Vehicles
-</button>

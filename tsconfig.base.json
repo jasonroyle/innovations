@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@codeweavers/manufacturers": ["manufacturers/src/index.ts"],
-      "@codeweavers/showroom": ["showroom/src/index.ts"],
+      "@codeweavers/showrooms": ["showrooms/src/index.ts"],
       "@codeweavers/vehicles": ["vehicles/src/index.ts"]
     }
   },

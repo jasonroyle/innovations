@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
 
-export const showroomRoutes: Route[] = [
+export const showroomsRoutes: Route[] = [
   /* { path: '', pathMatch: 'full', component: InsertYourComponentHere } */
 ];
