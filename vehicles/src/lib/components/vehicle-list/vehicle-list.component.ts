@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+
 import { VehiclesFacade } from '../../+state/vehicles.facade';
 
 @Component({
@@ -9,12 +10,4 @@ import { VehiclesFacade } from '../../+state/vehicles.facade';
 export class VehicleListComponent {
   private readonly _vehiclesFacade = inject(VehiclesFacade);
   public readonly vehicles$ = this._vehiclesFacade.allVehiclesWithManufacturers$;
-
-  public loadVehicles(): void {
-    this._vehiclesFacade.dispatch(
-      this._vehiclesFacade.actions.vehicleListLoadVehicles({
-        params: {}
-      })
-    );
-  }
 }

@@ -1,14 +1,9 @@
-<h2>Vehicles</h2>
-
-<button type="button" (click)="loadVehicles()">
-  Load Vehicles
-</button>
-
 <ul>
   @for (vehicle of vehicles$ | async; track vehicle.id) {
   <li>
-    <h3>{{ vehicle.manufacturer?.name }} {{ vehicle.model }}</h3>
-    <pre>{{ vehicle | json }}</pre>
+    <a [routerLink]="[vehicle.id]" routerLinkActive="active">
+      {{ vehicle.manufacturer?.name }} {{ vehicle.model }}
+    </a>
   </li>
   }
 </ul>

@@ -17,7 +17,8 @@ export class VehiclesFacade {
   loaded$ = this.store.pipe(select(VehiclesSelectors.selectVehiclesLoaded));
   allVehicles$ = this.store.pipe(select(VehiclesSelectors.selectAllVehicles));
   allVehiclesWithManufacturers$ = this.store.pipe(select(VehiclesSelectors.selectAllVehiclesWithManufacturers));
-  selectedVehicles$ = this.store.pipe(select(VehiclesSelectors.selectEntity));
+  selectedVehicle$ = this.store.pipe(select(VehiclesSelectors.selectEntity));
+  selectedVehicleWithManufacturer$ = this.store.pipe(select(VehiclesSelectors.selectEntityWithManufacturer));
 
   /**
    * Use the initialization action to perform one

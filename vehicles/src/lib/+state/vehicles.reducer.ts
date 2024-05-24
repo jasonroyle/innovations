@@ -7,7 +7,7 @@ import { VehiclesEntity } from './vehicles.models';
 export const VEHICLES_FEATURE_KEY = 'vehicles';
 
 export interface VehiclesState extends EntityState<VehiclesEntity> {
-  selectedId?: string | number; // which Vehicles record has been selected
+  selectedId?: string; // which Vehicles record has been selected
   loaded: boolean; // has the Vehicles list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -32,10 +32,6 @@ const reducer = createReducer(
     loaded: false,
     error: null,
   })),
-  on(VehiclesActions.vehicleListLoadVehicles, (state) => ({
-    ...state,
-    loaded: false
-  })),
   on(VehiclesActions.loadVehiclesSuccess, (state, { vehicles }) =>
     vehiclesAdapter.upsertMany(vehicles, { ...state, loaded: true })
   ),
@@ -43,6 +39,10 @@ const reducer = createReducer(
     ...state,
     loaded: true,
     error,
+  })),
+  on(VehiclesActions.selectVehicle_vehicleList, (state, { id }) => ({
+    ...state,
+    selectedId: id
   }))
 );
 
