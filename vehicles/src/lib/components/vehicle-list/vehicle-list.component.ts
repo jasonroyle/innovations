@@ -5,7 +5,7 @@ import { VehiclesFacade } from '../../+state/vehicles.facade';
 @Component({
   selector: 'cw-vehicle-list',
   templateUrl: './vehicle-list.component.html',
-  styleUrl: './vehicle-list.component.css',
+  styleUrl: './vehicle-list.component.scss',
 })
 export class VehicleListComponent {
   private readonly _vehiclesFacade = inject(VehiclesFacade);

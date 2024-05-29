@@ -7,7 +7,7 @@ import { ShowroomsFacade } from '../../+state/showrooms.facade';
 @Component({
   selector: 'cw-showroom-detail',
   templateUrl: './showroom-detail.component.html',
-  styleUrl: './showroom-detail.component.css',
+  styleUrl: './showroom-detail.component.scss',
 })
 export class ShowroomDetailComponent {
   private readonly _destroy$ = new Subject<void>();

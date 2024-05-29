@@ -7,7 +7,7 @@ import { VehiclesFacade } from '../../+state/vehicles.facade';
 @Component({
   selector: 'cw-vehicle-detail',
   templateUrl: './vehicle-detail.component.html',
-  styleUrl: './vehicle-detail.component.css',
+  styleUrl: './vehicle-detail.component.scss',
 })
 export class VehicleDetailComponent implements OnDestroy {
   private readonly _destroy$ = new Subject<void>();

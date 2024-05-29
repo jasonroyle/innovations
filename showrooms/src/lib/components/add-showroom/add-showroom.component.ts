@@ -14,7 +14,7 @@ interface ShowroomForm {
 @Component({
   selector: 'cw-add-showroom',
   templateUrl: './add-showroom.component.html',
-  styleUrl: './add-showroom.component.css',
+  styleUrl: './add-showroom.component.scss',
 })
 export class AddShowroomComponent {
   private readonly _manufacturersFacade = inject(ManufacturersFacade);
