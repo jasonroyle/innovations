@@ -13,6 +13,9 @@
     @for (vehicle of detail.vehicles; track vehicle?.registrationNumber) {
       <li><a [routerLink]="['/vehicles', vehicle?.registrationNumber]">
         {{ vehicle?.model }}
+        <small>
+          {{ vehicle?.registrationNumber }}
+        </small>
       </a></li>
     }
   </ul>

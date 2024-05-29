@@ -4,6 +4,7 @@ import { select, Store, Action } from '@ngrx/store';
 import * as ShowroomsActions from './showrooms.actions';
 import * as ShowroomsFeature from './showrooms.reducer';
 import * as ShowroomsSelectors from './showrooms.selectors';
+import { selectAllVehicleDetailsWithoutShowroomByManufacturerId } from './showrooms.selectors';
 
 @Injectable()
 export class ShowroomsFacade {
@@ -18,6 +19,7 @@ export class ShowroomsFacade {
   allShowrooms$ = this.store.pipe(
     select(ShowroomsSelectors.selectAllShowrooms)
   );
+  allVehicleDetailsWithoutShowroom$ =  this.store.pipe(select(ShowroomsSelectors.selectAllVehicleDetailsWithoutShowroom));
   selectedShowroom$ = this.store.pipe(select(ShowroomsSelectors.selectEntity));
   selectedShowroomDetail$ = this.store.pipe(select(ShowroomsSelectors.selectEntityDetail));
 
@@ -35,5 +37,9 @@ export class ShowroomsFacade {
 
   selectShowroomBySlug(slug: string) {
     return this.store.pipe(select(ShowroomsSelectors.selectEntityBySlug(slug)));
+  }
+
+  selectVehicleDetailsWithoutShowroomByManufacturerId(manufacturerId: string) {
+    return this.store.pipe(select(ShowroomsSelectors.selectAllVehicleDetailsWithoutShowroomByManufacturerId(manufacturerId)));
   }
 }

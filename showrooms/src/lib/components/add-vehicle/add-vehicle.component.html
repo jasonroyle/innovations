@@ -15,7 +15,7 @@
       </select>
     </div>
   </fieldset>
-  <button type="submit">
+  <button [disabled]="vehicleForm.invalid" type="submit">
     Add
   </button>
 </form>

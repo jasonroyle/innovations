@@ -1,5 +1,5 @@
 import { selectManufacturersEntities } from '@codeweavers/manufacturers';
-import { selectVehiclesEntities, Vehicle } from '@codeweavers/vehicles';
+import { selectAllVehicleDetails, selectVehiclesEntities, Vehicle } from '@codeweavers/vehicles';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import {
@@ -60,4 +60,22 @@ export const selectEntityDetail = createSelector(
 export const selectEntityBySlug = (slug: string) => createSelector(
   selectAllShowrooms,
   (showrooms) => showrooms.find(showroom => showroom.slug === slug)
+);
+
+export const selectAllVehicleDetailsWithoutShowroom = createSelector(
+  selectAllShowrooms,
+  selectAllVehicleDetails,
+  (showrooms, vehicles) =>
+    vehicles.filter(detail =>
+      !showrooms.find(showroom => showroom.vehicleIds.includes(
+        detail.vehicle.registrationNumber
+      ))
+    )
+);
+
+export const selectAllVehicleDetailsWithoutShowroomByManufacturerId = (manufacturerId: string) => createSelector(
+  selectAllVehicleDetailsWithoutShowroom,
+  vehicles => vehicles.filter(detail =>
+    detail.vehicle.manufacturerId === manufacturerId
+  )
 );
