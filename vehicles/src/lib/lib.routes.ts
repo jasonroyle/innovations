@@ -11,7 +11,7 @@ export const vehiclesRoutes: Route[] = [
     component: VehiclesComponent,
     children: [
       {
-        path: ':id',
+        path: ':registrationNumber',
         pathMatch: 'full',
         component: VehicleDetailComponent,
         resolve: { vehicle: vehicleResolver }

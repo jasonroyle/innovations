@@ -15,8 +15,8 @@ export class VehiclesFacade {
    * and expose them as observables through the facade.
    */
   loaded$ = this.store.pipe(select(VehiclesSelectors.selectVehiclesLoaded));
+  allVehicleDetails$ = this.store.pipe(select(VehiclesSelectors.selectAllVehicleDetails));
   allVehicles$ = this.store.pipe(select(VehiclesSelectors.selectAllVehicles));
-  allVehiclesWithManufacturers$ = this.store.pipe(select(VehiclesSelectors.selectAllVehiclesWithManufacturers));
   selectedVehicle$ = this.store.pipe(select(VehiclesSelectors.selectEntity));
   selectedVehicleDetail$ = this.store.pipe(select(VehiclesSelectors.selectEntityDetail));
 
@@ -32,7 +32,11 @@ export class VehiclesFacade {
     return this.store.dispatch(action);
   }
 
-  selectVehicleById(id: string) {
-    return this.store.pipe(select(VehiclesSelectors.selectEntityById(id)));
+  selectVehicleByRegistrationNumber(id: string) {
+    return this.store.pipe(select(VehiclesSelectors.selectEntityByRegistrationNumber(id)));
+  }
+
+  selectVehicleDetailsByManufacturerId(manufacturerId: string) {
+    return this.store.pipe(select(VehiclesSelectors.selectVehicleDetailsByManufacturerId(manufacturerId)));
   }
 }

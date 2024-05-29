@@ -39,13 +39,23 @@ const reducer = createReducer(
     ...state,
     error,
   })),
-  on(ShowroomsActions.addShowroom_addShowroom, (state, { showroom }) => {
-    return showroomsAdapter.addOne(showroom, { ...state })
-  }),
+  on(ShowroomsActions.addShowroom_addShowroom, (state, { showroom }) =>
+    showroomsAdapter.addOne(showroom, { ...state })
+  ),
   on(ShowroomsActions.selectShowroom_showroomDetail, (state, { id }) => ({
     ...state,
     selectedId: id
-  }))
+  })),
+  on(ShowroomsActions.addVehicle_showroomDetail, (state, { vehicleId }) => {
+    const { selectedId } = state;
+    return selectedId ? showroomsAdapter.mapOne({
+      id: selectedId,
+      map: showroom => ({
+        ...showroom,
+        vehicleIds: [...showroom.vehicleIds, vehicleId]
+      })
+    }, state) : state;
+  })
 );
 
 export function showroomsReducer(

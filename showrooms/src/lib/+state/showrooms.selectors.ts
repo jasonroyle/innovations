@@ -1,5 +1,5 @@
 import { selectManufacturersEntities } from '@codeweavers/manufacturers';
-import { selectVehiclesEntities } from '@codeweavers/vehicles';
+import { selectVehiclesEntities, Vehicle } from '@codeweavers/vehicles';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import {
@@ -53,7 +53,7 @@ export const selectEntityDetail = createSelector(
   (showroom, manufacturers, vehicles) => ({
     showroom,
     manufacturer: showroom?.manufacturerId ? manufacturers[showroom.manufacturerId] : undefined,
-    vehicles: showroom?.vehicleIds.map(id => vehicles[id]) ?? []
+    vehicles: (showroom?.vehicleIds.map(id => vehicles[id]) ?? []) as Vehicle[]
   })
 );
 

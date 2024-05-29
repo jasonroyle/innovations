@@ -28,11 +28,19 @@ export const selectAllVehicles = createSelector(
   (state: VehiclesState) => selectAll(state)
 );
 
-export const selectAllVehiclesWithManufacturers = createSelector(
+export const selectAllVehicleDetails = createSelector(
   selectAllVehicles,
   selectManufacturersEntities,
   (vehicles, manufacturers) =>
-    vehicles.map(vehicle => ({ ...vehicle, manufacturer: manufacturers[vehicle.manufacturerId] }))
+    vehicles.map(vehicle => ({
+      vehicle,
+      manufacturer: manufacturers[vehicle.manufacturerId]
+    }))
+);
+
+export const selectVehicleDetailsByManufacturerId = (manufacturerId: string) => createSelector(
+  selectAllVehicleDetails,
+  vehicles => vehicles.filter(({ vehicle }) => vehicle.manufacturerId === manufacturerId)
 );
 
 export const selectVehiclesEntities = createSelector(
@@ -60,7 +68,7 @@ export const selectEntityDetail = createSelector(
   })
 );
 
-export const selectEntityById = (id: string) => createSelector(
+export const selectEntityByRegistrationNumber = (registrationNumber: string) => createSelector(
   selectVehiclesEntities,
-  vehicles => vehicles[id]
+  vehicles => vehicles[registrationNumber]
 );

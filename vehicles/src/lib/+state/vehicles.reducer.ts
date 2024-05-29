@@ -17,7 +17,9 @@ export interface VehiclesPartialState {
 }
 
 export const vehiclesAdapter: EntityAdapter<VehiclesEntity> =
-  createEntityAdapter<VehiclesEntity>();
+  createEntityAdapter<VehiclesEntity>({
+    selectId: ({ registrationNumber }) => registrationNumber
+  });
 
 export const initialVehiclesState: VehiclesState =
   vehiclesAdapter.getInitialState({
@@ -40,9 +42,9 @@ const reducer = createReducer(
     loaded: true,
     error,
   })),
-  on(VehiclesActions.selectVehicle_vehicleList, (state, { id }) => ({
+  on(VehiclesActions.selectVehicle_vehicleList, (state, { registrationNumber }) => ({
     ...state,
-    selectedId: id
+    selectedId: registrationNumber
   }))
 );
 

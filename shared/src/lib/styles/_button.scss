@@ -1,0 +1,16 @@
+button {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 0.1rem solid var(--light-grey);
+  border-radius: 0.5rem;
+  background-color: var(--white);
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &:not(:disabled) {
+    &:focus, &:hover {
+      border-color: var(--black);
+      cursor: pointer;
+    }
+  }
+}

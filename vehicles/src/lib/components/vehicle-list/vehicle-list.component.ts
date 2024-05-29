@@ -9,5 +9,5 @@ import { VehiclesFacade } from '../../+state/vehicles.facade';
 })
 export class VehicleListComponent {
   private readonly _vehiclesFacade = inject(VehiclesFacade);
-  public readonly vehicles$ = this._vehiclesFacade.allVehiclesWithManufacturers$;
+  public readonly details$ = this._vehiclesFacade.allVehicleDetails$;
 }

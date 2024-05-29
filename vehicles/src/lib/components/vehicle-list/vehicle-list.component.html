@@ -1,9 +1,13 @@
 <ul>
-  @for (vehicle of vehicles$ | async; track vehicle.id) {
-  <li>
-    <a [routerLink]="[vehicle.id]" routerLinkActive="active">
-      {{ vehicle.manufacturer?.name }} {{ vehicle.model }}
-    </a>
-  </li>
+  @for (detail of details$ | async; track detail.vehicle.registrationNumber) {
+    <li>
+      <a [routerLink]="[detail.vehicle.registrationNumber]" routerLinkActive="active">
+        {{ detail.manufacturer?.name }}
+        {{ detail.vehicle.model }}
+        <small>
+          {{ detail.vehicle.registrationNumber }}
+        </small>
+      </a>
+    </li>
   }
 </ul>

@@ -15,7 +15,7 @@ export const loadVehiclesFailure = createAction(
 
 export const selectVehicle_vehicleList = createAction(
   '[Vehicle List] Select Vehicle',
-  props<{ id?: string; }>()
+  props<{ registrationNumber?: string; }>()
 );
 
 export const publicActions = {

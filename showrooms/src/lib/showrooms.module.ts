@@ -12,6 +12,7 @@ import { ShowroomsEffects } from './+state/showrooms.effects';
 import { ShowroomsFacade } from './+state/showrooms.facade';
 import * as fromShowrooms from './+state/showrooms.reducer';
 import { AddShowroomComponent } from './components/add-showroom/add-showroom.component';
+import { AddVehicleComponent } from './components/add-vehicle/add-vehicle.component';
 import { ShowroomDetailComponent } from './components/showroom-detail/showroom-detail.component';
 import { ShowroomListComponent } from './components/showroom-list/showroom-list.component';
 import { showroomsRoutes } from './lib.routes';
@@ -30,14 +31,12 @@ import { ShowroomsService } from './services/showrooms.service';
     ReactiveFormsModule,
     ManufacturersModule,
     SharedModule,
-    VehiclesApiModule
+    VehiclesApiModule,
   ],
-  providers: [
-    ShowroomsFacade,
-    ShowroomsService
-  ],
+  providers: [ShowroomsFacade, ShowroomsService],
   declarations: [
     AddShowroomComponent,
+    AddVehicleComponent,
     ShowroomDetailComponent,
     ShowroomsComponent,
     ShowroomListComponent,

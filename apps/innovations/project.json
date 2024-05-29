@@ -21,7 +21,12 @@
           "apps/innovations/src/assets"
         ],
         "styles": ["apps/innovations/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "shared/src/lib/styles"
+          ]
+        }
       },
       "configurations": {
         "production": {

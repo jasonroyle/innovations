@@ -18,6 +18,11 @@ export const addShowroom_addShowroom = createAction(
   props<{ showroom: ShowroomsEntity }>()
 );
 
+export const addVehicle_showroomDetail = createAction(
+  '[Showroom Detail] Add Vehicle',
+  props<{ vehicleId: string; }>()
+);
+
 export const selectShowroom_showroomDetail = createAction(
   '[Showroom Detail] Select Showroom',
   props<{ id?: string; }>()
@@ -25,5 +30,6 @@ export const selectShowroom_showroomDetail = createAction(
 
 export const publicActions = {
   addShowroom_addShowroom,
+  addVehicle_showroomDetail,
   selectShowroom_showroomDetail
 };

@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Vehicle } from '../models/vehicle';
 
-function mockVehicleId(max = 100): string {
-  return `${Math.ceil(Math.random() * max)}`;
-}
-
 function mockVehicleColor(): string {
   const colors: string[] = ['Red', 'Green', 'Blue'];
   return colors[Math.floor(Math.random() * colors.length)];
@@ -31,27 +27,39 @@ function mockVehicleModel(manufacturerId: string): string {
   return models[manufacturerId][Math.floor(Math.random() * models[manufacturerId].length)];
 }
 
-function mockVehicle(id?: string): Vehicle {
-  if (typeof id !== 'string') id = mockVehicleId();
+function mockVehicleRegistrationNumber(): string {
+  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numeric = '0123456789';
+  let chars = alpha;
+  let reg = '';
+  for (let i = 0; i < 7; i++) {
+    chars = i > 1 && i < 4 ? numeric : alpha;
+    reg += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return reg;
+}
+
+function mockVehicle(registrationNumber?: string): Vehicle {
+  if (!registrationNumber) registrationNumber = mockVehicleRegistrationNumber();
   const manufacturerId = mockVehicleManufacturerId();
   return {
     color: mockVehicleColor(),
-    id,
     manufacturerId,
-    model: mockVehicleModel(manufacturerId)
+    model: mockVehicleModel(manufacturerId),
+    registrationNumber
   };
 }
 
 @Injectable()
 export class VehiclesService {
-  public loadVehicle(id: string): Vehicle {
-    return mockVehicle(id);
+  public loadVehicle(registrationNumber: string): Vehicle {
+    return mockVehicle(registrationNumber);
   }
 
   public loadVehicles(): Vehicle[] {
     const vehicles: Vehicle[] = [];
     for (let i = 1; i <= 100; i++) {
-      vehicles.push(mockVehicle(`${i}`));
+      vehicles.push(mockVehicle());
     }
     return vehicles;
   }

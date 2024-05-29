@@ -21,7 +21,7 @@ export class VehicleDetailComponent implements OnDestroy {
       if (!vehicle) this._router.navigate(['../'], { relativeTo: this._route });
       this._vehiclesFacade.dispatch(
         this._vehiclesFacade.actions.selectVehicle_vehicleList({
-          id: vehicle.id
+          registrationNumber: vehicle.registrationNumber
         })
       );
     })

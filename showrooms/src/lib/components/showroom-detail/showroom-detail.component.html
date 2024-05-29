@@ -1,16 +1,20 @@
-<h3>{{ (detail$ | async)?.showroom?.name }}</h3>
+@if (detail$ | async; as detail) {
+  <h3>{{ detail.showroom?.name }}</h3>
 
-<dl>
-  <ng-container *ngIf="(detail$ | async)?.manufacturer">
-    <dt>Manufacturer</dt>
-    <dd>{{ (detail$ | async)?.manufacturer?.name }}</dd>
-  </ng-container>
-  <dt>Vehicles</dt>
-  <dd>
-    <ul>
-      @for (vehicle of (detail$ | async)?.vehicles; track vehicle?.id) {
-        <li><a [routerLink]="['/vehicles', vehicle?.id]">{{ vehicle?.model }}</a></li>
-      }
-    </ul>
-  </dd>
-</dl>
+  @if (detail.manufacturer; as manufacturer) {
+    <dl>
+      <dt>Manufacturer</dt>
+      <dd>{{ manufacturer.name }}</dd>
+    </dl>
+  }
+
+  <h4>Vehicles</h4>
+  <ul>
+    @for (vehicle of detail.vehicles; track vehicle?.registrationNumber) {
+      <li><a [routerLink]="['/vehicles', vehicle?.registrationNumber]">
+        {{ vehicle?.model }}
+      </a></li>
+    }
+  </ul>
+  <cw-add-vehicle [showroom]="detail.showroom"></cw-add-vehicle>
+}
