@@ -18,7 +18,7 @@ export class ManufacturersFacade {
     select(ManufacturersSelectors.selectManufacturersLoaded)
   );
   allManufacturers$ = this.store.pipe(
-    select(ManufacturersSelectors.selectAllManufacturers)
+    select(ManufacturersSelectors.selectAllManufacturersSorted)
   );
   selectedManufacturers$ = this.store.pipe(
     select(ManufacturersSelectors.selectEntity)

@@ -12,3 +12,18 @@ export const loadShowroomsFailure = createAction(
   '[Showrooms/API] Load Showrooms Failure',
   props<{ error: any }>()
 );
+
+export const addShowroom_addShowroom = createAction(
+  '[Add Showroom] Add Showroom',
+  props<{ showroom: ShowroomsEntity }>()
+);
+
+export const selectShowroom_showroomDetail = createAction(
+  '[Showroom Detail] Select Showroom',
+  props<{ id?: string; }>()
+);
+
+export const publicActions = {
+  addShowroom_addShowroom,
+  selectShowroom_showroomDetail
+};

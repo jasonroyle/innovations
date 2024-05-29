@@ -7,7 +7,7 @@ import { ShowroomsEntity } from './showrooms.models';
 export const SHOWROOMS_FEATURE_KEY = 'showrooms';
 
 export interface ShowroomsState extends EntityState<ShowroomsEntity> {
-  selectedId?: string | number; // which Showrooms record has been selected
+  selectedId?: string; // which Showrooms record has been selected
   loaded: boolean; // has the Showrooms list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -38,6 +38,13 @@ const reducer = createReducer(
   on(ShowroomsActions.loadShowroomsFailure, (state, { error }) => ({
     ...state,
     error,
+  })),
+  on(ShowroomsActions.addShowroom_addShowroom, (state, { showroom }) => {
+    return showroomsAdapter.addOne(showroom, { ...state })
+  }),
+  on(ShowroomsActions.selectShowroom_showroomDetail, (state, { id }) => ({
+    ...state,
+    selectedId: id
   }))
 );
 

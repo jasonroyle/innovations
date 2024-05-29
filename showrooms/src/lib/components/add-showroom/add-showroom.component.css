@@ -1,0 +1,51 @@
+fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 1rem 0 0 0;
+  padding: 1rem;
+  border: 0.1rem solid var(--light-grey);
+  border-radius: 0.25rem;
+
+  > div {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin: 0 0 1rem 0;
+    }
+
+    > label {
+      min-width: 10rem;
+    }
+
+    > input[type="text"], > select {
+      margin: 0 0 0 1rem;
+      padding: 0.5rem;
+      border: 0.1rem solid var(--light-grey);
+      border-radius: 0.25rem;
+      background-color: var(--white);
+
+      &:focus {
+        border-color: var(--black);
+      }
+    }
+  }
+}
+
+button {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 0.1rem solid var(--light-grey);
+  border-radius: 0.5rem;
+  background-color: var(--white);
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &:not(:disabled) {
+    &:focus, &:hover {
+      border-color: var(--black);
+      cursor: pointer;
+    }
+  }
+}

@@ -18,7 +18,7 @@ export class VehiclesFacade {
   allVehicles$ = this.store.pipe(select(VehiclesSelectors.selectAllVehicles));
   allVehiclesWithManufacturers$ = this.store.pipe(select(VehiclesSelectors.selectAllVehiclesWithManufacturers));
   selectedVehicle$ = this.store.pipe(select(VehiclesSelectors.selectEntity));
-  selectedVehicleWithManufacturer$ = this.store.pipe(select(VehiclesSelectors.selectEntityWithManufacturer));
+  selectedVehicleDetail$ = this.store.pipe(select(VehiclesSelectors.selectEntityDetail));
 
   /**
    * Use the initialization action to perform one
@@ -30,5 +30,9 @@ export class VehiclesFacade {
 
   dispatch(action: Action) {
     return this.store.dispatch(action);
+  }
+
+  selectVehicleById(id: string) {
+    return this.store.pipe(select(VehiclesSelectors.selectEntityById(id)));
   }
 }

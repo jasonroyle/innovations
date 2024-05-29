@@ -1,7 +1,6 @@
+import { Showroom } from '../models/showroom';
+
 /**
  * Interface for the 'Showrooms' data
  */
-export interface ShowroomsEntity {
-  id: string | number; // Primary ID
-  name: string;
-}
+export type ShowroomsEntity = Showroom;

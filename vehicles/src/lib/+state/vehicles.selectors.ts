@@ -51,9 +51,16 @@ export const selectEntity = createSelector(
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
 );
 
-export const selectEntityWithManufacturer = createSelector(
+export const selectEntityDetail = createSelector(
   selectEntity,
   selectManufacturersEntities,
-  (vehicle, manufacturers) =>
-    vehicle ? { ...vehicle, manufacturer: manufacturers[vehicle.manufacturerId] } : undefined
+  (vehicle, manufacturers) => ({
+    vehicle,
+    manufacturer: vehicle ? manufacturers[vehicle.manufacturerId] : undefined
+  })
+);
+
+export const selectEntityById = (id: string) => createSelector(
+  selectVehiclesEntities,
+  vehicles => vehicles[id]
 );

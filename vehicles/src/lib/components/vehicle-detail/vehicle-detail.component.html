@@ -1,6 +1,6 @@
-<h3>{{ (vehicle$ | async)?.manufacturer?.name }} {{ (vehicle$ | async)?.model }}</h3>
+<h3>{{ (detail$ | async)?.manufacturer?.name }} {{ (detail$ | async)?.vehicle?.model }}</h3>
 
 <dl>
   <dt>Colour</dt>
-  <dd>{{ (vehicle$ | async)?.color }}</dd>
+  <dd>{{ (detail$ | async)?.vehicle?.color }}</dd>
 </dl>

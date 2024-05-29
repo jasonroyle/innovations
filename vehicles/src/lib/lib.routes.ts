@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 
 import { VehicleDetailComponent } from './components/vehicle-detail/vehicle-detail.component';
-import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
+import { vehicleResolver } from './resolvers/vehicle.resolver';
 
 export const vehiclesRoutes: Route[] = [
   {
@@ -13,7 +13,8 @@ export const vehiclesRoutes: Route[] = [
       {
         path: ':id',
         pathMatch: 'full',
-        component: VehicleDetailComponent
+        component: VehicleDetailComponent,
+        resolve: { vehicle: vehicleResolver }
       }
     ]
   }

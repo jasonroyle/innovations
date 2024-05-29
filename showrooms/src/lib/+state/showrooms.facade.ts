@@ -8,6 +8,7 @@ import * as ShowroomsSelectors from './showrooms.selectors';
 @Injectable()
 export class ShowroomsFacade {
   private readonly store = inject(Store);
+  public readonly actions = ShowroomsActions.publicActions;
 
   /**
    * Combine pieces of state using createSelector,
@@ -17,7 +18,8 @@ export class ShowroomsFacade {
   allShowrooms$ = this.store.pipe(
     select(ShowroomsSelectors.selectAllShowrooms)
   );
-  selectedShowrooms$ = this.store.pipe(select(ShowroomsSelectors.selectEntity));
+  selectedShowroom$ = this.store.pipe(select(ShowroomsSelectors.selectEntity));
+  selectedShowroomDetail$ = this.store.pipe(select(ShowroomsSelectors.selectEntityDetail));
 
   /**
    * Use the initialization action to perform one
@@ -25,5 +27,13 @@ export class ShowroomsFacade {
    */
   init() {
     this.store.dispatch(ShowroomsActions.initShowrooms());
+  }
+
+  dispatch(action: Action): void {
+    this.store.dispatch(action);
+  }
+
+  selectShowroomBySlug(slug: string) {
+    return this.store.pipe(select(ShowroomsSelectors.selectEntityBySlug(slug)));
   }
 }

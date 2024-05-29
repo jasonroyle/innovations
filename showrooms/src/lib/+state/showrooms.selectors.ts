@@ -1,4 +1,7 @@
+import { selectManufacturersEntities } from '@codeweavers/manufacturers';
+import { selectVehiclesEntities } from '@codeweavers/vehicles';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+
 import {
   SHOWROOMS_FEATURE_KEY,
   ShowroomsState,
@@ -41,4 +44,20 @@ export const selectEntity = createSelector(
   selectShowroomsEntities,
   selectSelectedId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
+);
+
+export const selectEntityDetail = createSelector(
+  selectEntity,
+  selectManufacturersEntities,
+  selectVehiclesEntities,
+  (showroom, manufacturers, vehicles) => ({
+    showroom,
+    manufacturer: showroom?.manufacturerId ? manufacturers[showroom.manufacturerId] : undefined,
+    vehicles: showroom?.vehicleIds.map(id => vehicles[id]) ?? []
+  })
+);
+
+export const selectEntityBySlug = (slug: string) => createSelector(
+  selectAllShowrooms,
+  (showrooms) => showrooms.find(showroom => showroom.slug === slug)
 );

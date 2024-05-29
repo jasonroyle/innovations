@@ -1,5 +1,5 @@
 import { Component, OnDestroy, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
 import { VehiclesFacade } from '../../+state/vehicles.facade';
@@ -12,19 +12,19 @@ import { VehiclesFacade } from '../../+state/vehicles.facade';
 export class VehicleDetailComponent implements OnDestroy {
   private readonly _destroy$ = new Subject<void>();
   private readonly _route = inject(ActivatedRoute);
+  private readonly _router = inject(Router);
   private readonly _vehiclesFacade = inject(VehiclesFacade);
-  public readonly vehicle$ = this._vehiclesFacade.selectedVehicleWithManufacturer$;
+  public readonly detail$ = this._vehiclesFacade.selectedVehicleDetail$;
 
   constructor() {
-    this._route.paramMap
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(paramMap => {
-        this._vehiclesFacade.dispatch(
-          this._vehiclesFacade.actions.selectVehicle_vehicleList({
-            id: paramMap.get('id') ?? undefined
-          })
-        )
-      })
+    this._route.data.pipe(takeUntil(this._destroy$)).subscribe(({ vehicle }) => {
+      if (!vehicle) this._router.navigate(['../'], { relativeTo: this._route });
+      this._vehiclesFacade.dispatch(
+        this._vehiclesFacade.actions.selectVehicle_vehicleList({
+          id: vehicle.id
+        })
+      );
+    })
   }
 
   ngOnDestroy(): void {

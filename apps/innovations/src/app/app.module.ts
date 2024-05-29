@@ -29,8 +29,7 @@ import { NxWelcomeComponent } from './nx-welcome.component';
       logOnly: !isDevMode(),
       maxAge: 25
     }),
-    EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot(),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Manufacturer } from '../models/manufacturer';
 
 function mockManufacturers(): Manufacturer[] {
@@ -14,6 +15,14 @@ function mockManufacturers(): Manufacturer[] {
     {
       id: '3',
       name: 'Bugatti'
+    },
+    {
+      id: '4',
+      name: 'Volvo'
+    },
+    {
+      id: '5',
+      name: 'Ford'
     }
   ];
 }

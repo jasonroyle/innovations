@@ -11,7 +11,7 @@ function mockVehicleColor(): string {
 }
 
 function mockVehicleManufacturerId(): string {
-  const manufacturerIds = ['1', '2', '3'];
+  const manufacturerIds = ['1', '2', '3', '4', '5'];
   return manufacturerIds[Math.floor(Math.random() * manufacturerIds.length)];
 }
 
@@ -22,7 +22,11 @@ function mockVehicleModel(manufacturerId: string): string {
     // BMW
     '2': ['430i', 'x6'],
     // Bugatti
-    '3': ['Veyron']
+    '3': ['Veyron'],
+    // Volvo
+    '4': ['S40'],
+    // Ford
+    '5': ['Fiesta', 'Focus']
   };
   return models[manufacturerId][Math.floor(Math.random() * models[manufacturerId].length)];
 }
