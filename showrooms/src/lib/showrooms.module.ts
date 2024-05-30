@@ -25,7 +25,8 @@ import { ShowroomsService } from './services/showrooms.service';
     RouterModule.forChild(showroomsRoutes),
     StoreModule.forFeature(
       fromShowrooms.SHOWROOMS_FEATURE_KEY,
-      fromShowrooms.showroomsReducer
+      fromShowrooms.showroomsReducer,
+      { metaReducers: fromShowrooms.showroomsMetaReducers }
     ),
     EffectsModule.forFeature([ShowroomsEffects]),
     ReactiveFormsModule,
