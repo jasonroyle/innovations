@@ -1,5 +1,6 @@
+import { StoreHydration } from '@codeweavers/shared';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { MetaReducer, createReducer, on, Action } from '@ngrx/store';
 
 import * as ShowroomsActions from './showrooms.actions';
 import { ShowroomsEntity } from './showrooms.models';
@@ -64,3 +65,7 @@ export function showroomsReducer(
 ) {
   return reducer(state, action);
 }
+
+export const showroomsMetaReducers: MetaReducer[] = [
+  new StoreHydration().createReducer
+];
