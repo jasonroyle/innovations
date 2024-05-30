@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '@codeweavers/shared';
 
+import { VehicleDetailComponent } from './components/vehicle-detail/vehicle-detail.component';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import { vehiclesRoutes } from './lib.routes';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
-import { VehicleDetailComponent } from './components/vehicle-detail/vehicle-detail.component';
 import { VehiclesApiModule } from './vehicles-api.module';
 
 @NgModule({
@@ -14,12 +14,12 @@ import { VehiclesApiModule } from './vehicles-api.module';
     CommonModule,
     VehiclesApiModule,
     SharedModule,
-    RouterModule.forChild(vehiclesRoutes)
+    RouterModule.forChild(vehiclesRoutes),
   ],
   declarations: [
     VehicleDetailComponent,
     VehicleListComponent,
-    VehiclesComponent
-  ],
+    VehiclesComponent,
+  ]
 })
 export class VehiclesModule {}

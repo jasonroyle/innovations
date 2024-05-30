@@ -15,7 +15,7 @@
         <a [routerLink]="['/vehicles', vehicle?.registrationNumber]">
           {{ vehicle?.model }}
           <small>
-            {{ vehicle?.registrationNumber }}
+            {{ vehicle?.registrationNumber | registrationNumber }}
           </small>
         </a>
       </li>
