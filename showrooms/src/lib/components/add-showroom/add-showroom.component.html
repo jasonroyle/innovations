@@ -1,0 +1,22 @@
+<h3>Add Showroom</h3>
+
+<form [formGroup]="showroomForm" (ngSubmit)="addShowroom()">
+  <fieldset>
+    <div>
+      <label for="showroom-name">Name</label>
+      <input id="showroom-name" formControlName="name" type="text">
+    </div>
+    <div>
+      <label for="showroom-manufacturer">Manufacturer</label>
+      <select id="showroom-manufacturer" formControlName="manufacturerId">
+        <option [value]="null">Any</option>
+        @for (manufacturer of manufacturers$ | async; track manufacturer.id) {
+          <option [value]="manufacturer.id">{{ manufacturer.name }}</option>
+        }
+      </select>
+    </div>
+  </fieldset>
+  <button [disabled]="showroomForm.invalid" type="submit">
+    Add
+  </button>
+</form>

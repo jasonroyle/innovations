@@ -1,0 +1,9 @@
+<ul>
+  @for (showroom of showrooms$ | async; track showroom.id) {
+    <li>
+      <a [routerLink]="[showroom.slug]" routerLinkActive="active">
+        {{ showroom.name }}
+      </a>
+    </li>
+  }
+</ul>

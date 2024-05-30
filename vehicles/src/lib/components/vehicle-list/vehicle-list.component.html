@@ -1,0 +1,13 @@
+<ul>
+  @for (detail of details$ | async; track detail.vehicle.registrationNumber) {
+    <li>
+      <a [routerLink]="[detail.vehicle.registrationNumber]" routerLinkActive="active">
+        {{ detail.manufacturer?.name }}
+        {{ detail.vehicle.model }}
+        <small>
+          {{ detail.vehicle.registrationNumber }}
+        </small>
+      </a>
+    </li>
+  }
+</ul>

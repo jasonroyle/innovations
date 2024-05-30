@@ -1,0 +1,23 @@
+@if (detail$ | async; as detail) {
+  <h3>{{ detail.showroom?.name }}</h3>
+
+  @if (detail.manufacturer; as manufacturer) {
+    <dl>
+      <dt>Manufacturer</dt>
+      <dd>{{ manufacturer.name }}</dd>
+    </dl>
+  }
+
+  <h4>Vehicles</h4>
+  <ul>
+    @for (vehicle of detail.vehicles; track vehicle?.registrationNumber) {
+      <li><a [routerLink]="['/vehicles', vehicle?.registrationNumber]">
+        {{ vehicle?.model }}
+        <small>
+          {{ vehicle?.registrationNumber }}
+        </small>
+      </a></li>
+    }
+  </ul>
+  <cw-add-vehicle [showroom]="detail.showroom"></cw-add-vehicle>
+}

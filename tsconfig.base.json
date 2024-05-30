@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@codeweavers/manufacturers": ["manufacturers/src/index.ts"],
+      "@codeweavers/shared": ["shared/src/index.ts"],
+      "@codeweavers/showrooms": ["showrooms/src/index.ts"],
+      "@codeweavers/vehicles": ["vehicles/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
