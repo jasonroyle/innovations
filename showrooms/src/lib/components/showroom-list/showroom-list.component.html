@@ -1,7 +1,7 @@
-<ul>
+<ul class="nav-list">
   @for (showroom of showrooms$ | async; track showroom.id) {
-    <li>
-      <a [routerLink]="[showroom.slug]" routerLinkActive="active">
+    <li class="nav-item">
+      <a [routerLink]="[showroom.slug]" routerLinkActive="nav-active">
         {{ showroom.name }}
       </a>
     </li>

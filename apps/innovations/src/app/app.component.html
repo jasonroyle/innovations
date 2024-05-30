@@ -1,7 +1,13 @@
 <nav>
-  @for (navItem of navItems; track navItem.text) {
-  <a [routerLink]="navItem.commands" routerLinkActive="active">{{ navItem.text }}</a>
-  }
+  <ul class="nav-list nav-list-lg nav-list-horizontal">
+    @for (navItem of navItems; track navItem.text) {
+      <li class="nav-item">
+        <a [routerLink]="navItem.commands" routerLinkActive="nav-active">
+          {{ navItem.text }}
+        </a>
+      </li>
+    }
+  </ul>
 </nav>
 
 <div class="page">

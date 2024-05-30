@@ -5,10 +5,15 @@
   --black: black;
   --light-grey: #f0f0f0;
   --grey: #ccc;
+  --dark-grey: #666;
   --white: white;
 }
 
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
+}
+
+small {
+  color: var(--dark-grey);
 }
