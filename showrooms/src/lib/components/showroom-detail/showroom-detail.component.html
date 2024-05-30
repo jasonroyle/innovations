@@ -9,14 +9,16 @@
   }
 
   <h4>Vehicles</h4>
-  <ul>
+  <ul class="nav-list nav-list-horizontal nav-list-wrap">
     @for (vehicle of detail.vehicles; track vehicle?.registrationNumber) {
-      <li><a [routerLink]="['/vehicles', vehicle?.registrationNumber]">
-        {{ vehicle?.model }}
-        <small>
-          {{ vehicle?.registrationNumber }}
-        </small>
-      </a></li>
+      <li class="nav-item">
+        <a [routerLink]="['/vehicles', vehicle?.registrationNumber]">
+          {{ vehicle?.model }}
+          <small>
+            {{ vehicle?.registrationNumber }}
+          </small>
+        </a>
+      </li>
     }
   </ul>
   <cw-add-vehicle [showroom]="detail.showroom"></cw-add-vehicle>
