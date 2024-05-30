@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Manufacturer } from '../models/manufacturer';
 
-function mockManufacturers(): Manufacturer[] {
+export function mockManufacturers(): Manufacturer[] {
   return [
     {
       id: '1',

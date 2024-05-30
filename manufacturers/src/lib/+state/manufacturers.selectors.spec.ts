@@ -5,6 +5,7 @@ import {
   initialManufacturersState,
 } from './manufacturers.reducer';
 import * as ManufacturersSelectors from './manufacturers.selectors';
+import { selectAllManufacturersSorted } from './manufacturers.selectors';
 
 describe('Manufacturers Selectors', () => {
   const ERROR_MSG = 'No Error Available';
@@ -21,9 +22,9 @@ describe('Manufacturers Selectors', () => {
     state = {
       manufacturers: manufacturersAdapter.setAll(
         [
-          createManufacturersEntity('PRODUCT-AAA'),
-          createManufacturersEntity('PRODUCT-BBB'),
-          createManufacturersEntity('PRODUCT-CCC'),
+          createManufacturersEntity('PRODUCT-CCC', 'CCC'),
+          createManufacturersEntity('PRODUCT-BBB', 'BBB'),
+          createManufacturersEntity('PRODUCT-AAA', 'AAA'),
         ],
         {
           ...initialManufacturersState,
@@ -63,6 +64,15 @@ describe('Manufacturers Selectors', () => {
       const result = ManufacturersSelectors.selectManufacturersError(state);
 
       expect(result).toBe(ERROR_MSG);
+    });
+
+    it('selectAllManufacturersSorted() should return the list of manufacturers sorted by name', () => {
+      const result = ManufacturersSelectors.selectAllManufacturersSorted(state);
+
+      expect(result.length).toBe(3);
+      expect(result[0].name).toBe('AAA');
+      expect(result[1].name).toBe('BBB');
+      expect(result[2].name).toBe('CCC');
     });
   });
 });

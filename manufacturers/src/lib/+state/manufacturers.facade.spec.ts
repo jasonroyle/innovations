@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule, Store } from '@ngrx/store';
-import { readFirst } from '@nx/angular/testing';
+import { firstValueFrom } from 'rxjs';
 
+import { ManufacturersService } from '../services/manufacturers.service';
 import * as ManufacturersActions from './manufacturers.actions';
 import { ManufacturersEffects } from './manufacturers.effects';
 import { ManufacturersFacade } from './manufacturers.facade';
@@ -41,7 +42,7 @@ describe('ManufacturersFacade', () => {
           ),
           EffectsModule.forFeature([ManufacturersEffects]),
         ],
-        providers: [ManufacturersFacade],
+        providers: [ManufacturersFacade, ManufacturersService],
       })
       class CustomFeatureModule {}
 
@@ -59,34 +60,23 @@ describe('ManufacturersFacade', () => {
       facade = TestBed.inject(ManufacturersFacade);
     });
 
-    /**
-     * The initially generated facade::loadAll() returns empty array
-     */
-    it('loadAll() should return empty list with loaded == true', async () => {
-      let list = await readFirst(facade.allManufacturers$);
-      let isLoaded = await readFirst(facade.loaded$);
+    it('ngrxOnInitEffects() should populate manufacturers and set loaded == true', async () => {
+      const list = await firstValueFrom(facade.allManufacturers$);
+      const isLoaded = await firstValueFrom(facade.loaded$);
 
-      expect(list.length).toBe(0);
-      expect(isLoaded).toBe(false);
-
-      facade.init();
-
-      list = await readFirst(facade.allManufacturers$);
-      isLoaded = await readFirst(facade.loaded$);
-
-      expect(list.length).toBe(0);
+      expect(list.length).toBe(5);
       expect(isLoaded).toBe(true);
-    });
+    })
 
     /**
      * Use `loadManufacturersSuccess` to manually update list
      */
     it('allManufacturers$ should return the loaded list; and loaded flag == true', async () => {
-      let list = await readFirst(facade.allManufacturers$);
-      let isLoaded = await readFirst(facade.loaded$);
+      let list = await firstValueFrom(facade.allManufacturers$);
+      let isLoaded = await firstValueFrom(facade.loaded$);
 
-      expect(list.length).toBe(0);
-      expect(isLoaded).toBe(false);
+      expect(list.length).toBe(5);
+      expect(isLoaded).toBe(true);
 
       store.dispatch(
         ManufacturersActions.loadManufacturersSuccess({
@@ -97,8 +87,8 @@ describe('ManufacturersFacade', () => {
         })
       );
 
-      list = await readFirst(facade.allManufacturers$);
-      isLoaded = await readFirst(facade.loaded$);
+      list = await firstValueFrom(facade.allManufacturers$);
+      isLoaded = await firstValueFrom(facade.loaded$);
 
       expect(list.length).toBe(2);
       expect(isLoaded).toBe(true);

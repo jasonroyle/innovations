@@ -5,6 +5,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
+import { ManufacturersService, mockManufacturers } from '../services/manufacturers.service';
 import * as ManufacturersActions from './manufacturers.actions';
 import { ManufacturersEffects } from './manufacturers.effects';
 
@@ -19,6 +20,7 @@ describe('ManufacturersEffects', () => {
         ManufacturersEffects,
         provideMockActions(() => actions),
         provideMockStore(),
+        ManufacturersService
       ],
     });
 
@@ -30,7 +32,7 @@ describe('ManufacturersEffects', () => {
       actions = hot('-a-|', { a: ManufacturersActions.initManufacturers() });
 
       const expected = hot('-a-|', {
-        a: ManufacturersActions.loadManufacturersSuccess({ manufacturers: [] }),
+        a: ManufacturersActions.loadManufacturersSuccess({ manufacturers: mockManufacturers() }),
       });
 
       expect(effects.init$).toBeObservable(expected);

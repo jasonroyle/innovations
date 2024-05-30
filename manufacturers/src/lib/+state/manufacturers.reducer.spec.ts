@@ -35,6 +35,21 @@ describe('Manufacturers Reducer', () => {
       expect(result.loaded).toBe(true);
       expect(result.ids.length).toBe(2);
     });
+
+    it('loadManufacturersFailure should return an error', () => {
+      const error  = 'Oh no!';
+      const action = ManufacturersActions.loadManufacturersFailure({
+        error
+      });
+
+      const result: ManufacturersState = manufacturersReducer(
+        initialManufacturersState,
+        action
+      );
+
+      expect(result.loaded).toBe(true);
+      expect(result.error).toBe(error);
+    });
   });
 
   describe('unknown action', () => {
