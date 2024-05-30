@@ -5,7 +5,7 @@
         {{ detail.manufacturer?.name }}
         {{ detail.vehicle.model }}
         <small>
-          {{ detail.vehicle.registrationNumber }}
+          {{ detail.vehicle.registrationNumber | registrationNumber }}
         </small>
       </a>
     </li>

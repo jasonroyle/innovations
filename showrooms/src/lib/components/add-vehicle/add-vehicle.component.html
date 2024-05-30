@@ -8,8 +8,7 @@
             @if (!showroom?.manufacturerId) {
               {{ detail.manufacturer?.name }}
             }
-            {{ detail.vehicle.model }}
-            {{ detail.vehicle.registrationNumber }}
+            {{ detail.vehicle.model }} - {{ detail.vehicle.registrationNumber | registrationNumber }}
           </option>
         }
       </select>

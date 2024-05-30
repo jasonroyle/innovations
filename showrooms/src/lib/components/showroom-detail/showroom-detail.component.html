@@ -11,12 +11,14 @@
   <h4>Vehicles</h4>
   <ul>
     @for (vehicle of detail.vehicles; track vehicle?.registrationNumber) {
-      <li><a [routerLink]="['/vehicles', vehicle?.registrationNumber]">
-        {{ vehicle?.model }}
-        <small>
-          {{ vehicle?.registrationNumber }}
-        </small>
-      </a></li>
+      <li>
+        <a [routerLink]="['/vehicles', vehicle?.registrationNumber]">
+          {{ vehicle?.model }}
+          <small>
+            {{ vehicle?.registrationNumber | registrationNumber }}
+          </small>
+        </a>
+      </li>
     }
   </ul>
   <cw-add-vehicle [showroom]="detail.showroom"></cw-add-vehicle>
