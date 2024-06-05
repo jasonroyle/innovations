@@ -15,14 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@codeweavers/manufacturers": ["manufacturers/src/index.ts"],
       "@codeweavers/manufacturers-api": ["libs/manufacturers/api/src/index.ts"],
       "@codeweavers/manufacturers-ui": ["libs/manufacturers/ui/src/index.ts"],
       "@codeweavers/shared": ["libs/shared/src/index.ts"],
-      "@codeweavers/showrooms": ["showrooms/src/index.ts"],
       "@codeweavers/showrooms-api": ["libs/showrooms/api/src/index.ts"],
       "@codeweavers/showrooms-ui": ["libs/showrooms/ui/src/index.ts"],
-      "@codeweavers/vehicles": ["vehicles/src/index.ts"],
       "@codeweavers/vehicles-api": ["libs/vehicles/api/src/index.ts"],
       "@codeweavers/vehicles-ui": ["libs/vehicles/ui/src/index.ts"]
     }
