@@ -1,5 +1,4 @@
 import { selectManufacturersEntities } from '@codeweavers/manufacturers';
-import { selectAllVehicleDetails, selectVehiclesEntities, Vehicle } from '@codeweavers/vehicles';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import {
@@ -49,33 +48,15 @@ export const selectEntity = createSelector(
 export const selectEntityDetail = createSelector(
   selectEntity,
   selectManufacturersEntities,
-  selectVehiclesEntities,
-  (showroom, manufacturers, vehicles) => ({
+  (showroom, manufacturers) => ({
     showroom,
-    manufacturer: showroom?.manufacturerId ? manufacturers[showroom.manufacturerId] : undefined,
-    vehicles: (showroom?.vehicleIds.map(id => vehicles[id]) ?? []) as Vehicle[]
+    manufacturer: showroom?.manufacturerId
+      ? manufacturers[showroom.manufacturerId]
+      : undefined,
   })
 );
 
-export const selectEntityBySlug = (slug: string) => createSelector(
-  selectAllShowrooms,
-  (showrooms) => showrooms.find(showroom => showroom.slug === slug)
-);
-
-export const selectAllVehicleDetailsWithoutShowroom = createSelector(
-  selectAllShowrooms,
-  selectAllVehicleDetails,
-  (showrooms, vehicles) =>
-    vehicles.filter(detail =>
-      !showrooms.find(showroom => showroom.vehicleIds.includes(
-        detail.vehicle.registrationNumber
-      ))
-    )
-);
-
-export const selectAllVehicleDetailsWithoutShowroomByManufacturerId = (manufacturerId: string) => createSelector(
-  selectAllVehicleDetailsWithoutShowroom,
-  vehicles => vehicles.filter(detail =>
-    detail.vehicle.manufacturerId === manufacturerId
-  )
-);
+export const selectEntityBySlug = (slug: string) =>
+  createSelector(selectAllShowrooms, (showrooms) =>
+    showrooms.find((showroom) => showroom.slug === slug)
+  );

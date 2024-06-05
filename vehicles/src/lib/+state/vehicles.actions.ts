@@ -15,9 +15,15 @@ export const loadVehiclesFailure = createAction(
 
 export const selectVehicle_vehicleList = createAction(
   '[Vehicle List] Select Vehicle',
-  props<{ registrationNumber?: string; }>()
+  props<{ registrationNumber?: string }>()
+);
+
+export const linkShowroom_showroomAddVehicle = createAction(
+  '[Showroom Add Vehicle] Link Showroom',
+  props<{ registrationNumber: string; showroomId?: string }>()
 );
 
 export const publicActions = {
-  selectVehicle_vehicleList
+  linkShowroom_showroomAddVehicle,
+  selectVehicle_vehicleList,
 };

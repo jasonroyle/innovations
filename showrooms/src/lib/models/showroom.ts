@@ -3,5 +3,4 @@ export interface Showroom {
   manufacturerId?: string;
   name: string;
   slug: string;
-  vehicleIds: string[];
 }

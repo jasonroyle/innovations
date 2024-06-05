@@ -1,25 +1,30 @@
-@if (detail$ | async; as detail) {
-  <h3>{{ detail.showroom?.name }}</h3>
+@if (showroomDetail$ | async; as showroomDetail) {
+  <h3>{{ showroomDetail.showroom?.name }}</h3>
 
-  @if (detail.manufacturer; as manufacturer) {
+  @if (showroomDetail.manufacturer; as manufacturer) {
     <dl>
       <dt>Manufacturer</dt>
       <dd>{{ manufacturer.name }}</dd>
     </dl>
   }
 
-  <h4>Vehicles</h4>
-  <ul class="nav-list nav-list-horizontal nav-list-wrap">
-    @for (vehicle of detail.vehicles; track vehicle?.registrationNumber) {
-      <li class="nav-item">
-        <a [routerLink]="['/vehicles', vehicle?.registrationNumber]">
-          {{ vehicle?.model }}
-          <small>
-            {{ vehicle?.registrationNumber | registrationNumber }}
-          </small>
-        </a>
-      </li>
-    }
-  </ul>
-  <cw-add-vehicle [showroom]="detail.showroom"></cw-add-vehicle>
+  @if (vehicleDetails$ | async; as vehicleDetails) {
+    <h4>Vehicles</h4>
+    <ul class="nav-list nav-list-horizontal nav-list-wrap">
+      @for (vehicleDetail of vehicleDetails; track vehicleDetail.vehicle.registrationNumber) {
+        <li class="nav-item">
+          <a [routerLink]="['/vehicles', vehicleDetail.vehicle.registrationNumber]">
+            @if (!showroomDetail.manufacturer) {
+              {{ vehicleDetail.manufacturer?.name }}
+            }
+            {{ vehicleDetail.vehicle.model }}
+            <small>
+              {{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}
+            </small>
+          </a>
+        </li>
+      }
+    </ul>
+  }
+  <cw-add-vehicle [showroom]="showroomDetail.showroom"></cw-add-vehicle>
 }

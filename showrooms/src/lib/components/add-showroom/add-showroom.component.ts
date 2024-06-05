@@ -23,7 +23,10 @@ export class AddShowroomComponent {
   public manufacturers$ = this._manufacturersFacade.allManufacturers$;
   public showroomForm = new FormGroup<ShowroomForm>({
     manufacturerId: new FormControl<string | null>(null),
-    name: new FormControl('', { nonNullable: true, validators: [Validators.required] })
+    name: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
   });
 
   public async addShowroom(): Promise<void> {
@@ -35,7 +38,6 @@ export class AddShowroomComponent {
       manufacturerId: value.manufacturerId ?? undefined,
       name,
       slug,
-      vehicleIds: []
     };
     this._showroomsFacade.dispatch(
       this._showroomsFacade.actions.addShowroom_addShowroom({ showroom })

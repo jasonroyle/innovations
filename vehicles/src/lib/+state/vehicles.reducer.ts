@@ -19,7 +19,7 @@ export interface VehiclesPartialState {
 
 export const vehiclesAdapter: EntityAdapter<VehiclesEntity> =
   createEntityAdapter<VehiclesEntity>({
-    selectId: ({ registrationNumber }) => registrationNumber
+    selectId: ({ registrationNumber }) => registrationNumber,
   });
 
 export const initialVehiclesState: VehiclesState =
@@ -43,10 +43,24 @@ const reducer = createReducer(
     loaded: true,
     error,
   })),
-  on(VehiclesActions.selectVehicle_vehicleList, (state, { registrationNumber }) => ({
-    ...state,
-    selectedId: registrationNumber
-  }))
+  on(
+    VehiclesActions.selectVehicle_vehicleList,
+    (state, { registrationNumber }) => ({
+      ...state,
+      selectedId: registrationNumber,
+    })
+  ),
+  on(
+    VehiclesActions.linkShowroom_showroomAddVehicle,
+    (state, { registrationNumber, showroomId }) =>
+      vehiclesAdapter.mapOne(
+        {
+          id: registrationNumber,
+          map: (vehicle) => ({ ...vehicle, showroomId }),
+        },
+        state
+      )
+  )
 );
 
 export function vehiclesReducer(
@@ -57,5 +71,5 @@ export function vehiclesReducer(
 }
 
 export const vehiclesMetaReducers: MetaReducer[] = [
-  new StoreHydration().createReducer
+  new StoreHydration().createReducer,
 ];

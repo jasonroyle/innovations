@@ -3,4 +3,5 @@ export interface Vehicle {
   manufacturerId: string;
   model: string;
   registrationNumber: string;
+  showroomId?: string;
 }
