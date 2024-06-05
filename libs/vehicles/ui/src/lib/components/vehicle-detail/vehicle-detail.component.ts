@@ -1,8 +1,7 @@
 import { Component, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { VehiclesFacade } from '@codeweavers/vehicles-api';
 import { Subject, takeUntil } from 'rxjs';
-
-import { VehiclesFacade } from '../../+state/vehicles.facade';
 
 @Component({
   selector: 'cw-vehicle-detail',
@@ -17,14 +16,17 @@ export class VehicleDetailComponent implements OnDestroy {
   public readonly detail$ = this._vehiclesFacade.selectedVehicleDetail$;
 
   constructor() {
-    this._route.data.pipe(takeUntil(this._destroy$)).subscribe(({ vehicle }) => {
-      if (!vehicle) this._router.navigate(['../'], { relativeTo: this._route });
-      this._vehiclesFacade.dispatch(
-        this._vehiclesFacade.actions.selectVehicle_vehicleList({
-          registrationNumber: vehicle.registrationNumber
-        })
-      );
-    })
+    this._route.data
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(({ vehicle }) => {
+        if (!vehicle)
+          this._router.navigate(['../'], { relativeTo: this._route });
+        this._vehiclesFacade.dispatch(
+          this._vehiclesFacade.actions.selectVehicle_vehicleList({
+            registrationNumber: vehicle.registrationNumber,
+          })
+        );
+      });
   }
 
   ngOnDestroy(): void {

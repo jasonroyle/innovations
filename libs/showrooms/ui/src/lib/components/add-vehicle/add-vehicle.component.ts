@@ -1,9 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { VehiclesFacade } from '@codeweavers/vehicles';
-
-import { ShowroomsFacade } from '../../+state/showrooms.facade';
-import { Showroom } from '../../models/showroom';
+import { Showroom, ShowroomsFacade } from '@codeweavers/showrooms-api';
+import { VehiclesFacade } from '@codeweavers/vehicles-api';
 
 interface VehicleForm {
   vehicleId: FormControl<string | null>;

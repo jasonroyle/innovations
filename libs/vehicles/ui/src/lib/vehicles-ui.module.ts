@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '@codeweavers/shared';
 import { ShowroomsApiModule } from '@codeweavers/showrooms-api';
 import { VehiclesApiModule } from '@codeweavers/vehicles-api';
 
@@ -13,6 +14,7 @@ import { VehiclesComponent } from './pages/vehicles/vehicles.component';
   imports: [
     CommonModule,
     RouterModule.forChild(vehiclesUiRoutes),
+    SharedModule,
     ShowroomsApiModule,
     VehiclesApiModule,
   ],

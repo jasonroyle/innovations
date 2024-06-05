@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ManufacturersFacade } from '@codeweavers/manufacturers';
-
-import { ShowroomsFacade } from '../../+state/showrooms.facade';
-import { ShowroomsEntity } from '../../+state/showrooms.models';
-import { ShowroomsService } from '../../services/showrooms.service';
+import { ManufacturersFacade } from '@codeweavers/manufacturers-api';
+import {
+  ShowroomsEntity,
+  ShowroomsFacade,
+  ShowroomsService,
+} from '@codeweavers/showrooms-api';
 
 interface ShowroomForm {
   manufacturerId: FormControl<string | null>;

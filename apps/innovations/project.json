@@ -24,7 +24,7 @@
         "scripts": [],
         "stylePreprocessorOptions": {
           "includePaths": [
-            "shared/src/lib/styles"
+            "libs/shared/src/lib/styles"
           ]
         }
       },

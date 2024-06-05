@@ -1,4 +1,4 @@
-import { selectManufacturersEntities } from '@codeweavers/manufacturers';
+import { selectManufacturersEntities } from '@codeweavers/manufacturers-api';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import {

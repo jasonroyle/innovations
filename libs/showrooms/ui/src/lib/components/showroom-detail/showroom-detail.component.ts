@@ -1,9 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VehicleDetail, VehiclesFacade } from '@codeweavers/vehicles';
+import { ShowroomsFacade } from '@codeweavers/showrooms-api';
+import { VehicleDetail, VehiclesFacade } from '@codeweavers/vehicles-api';
 import { Observable, Subject, takeUntil } from 'rxjs';
-
-import { ShowroomsFacade } from '../../+state/showrooms.facade';
 
 @Component({
   selector: 'cw-showroom-detail',

@@ -1,7 +1,7 @@
 import {
   ManufacturersEntity,
   selectManufacturersEntities,
-} from '@codeweavers/manufacturers';
+} from '@codeweavers/manufacturers-api';
 import { Dictionary } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 

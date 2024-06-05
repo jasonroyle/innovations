@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
-
-import { ShowroomsFacade } from '../../+state/showrooms.facade';
+import { ShowroomsFacade } from '@codeweavers/showrooms-api';
 
 @Component({
   selector: 'cw-showroom-list',

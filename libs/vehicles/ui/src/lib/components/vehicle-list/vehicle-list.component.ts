@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
-
-import { VehiclesFacade } from '../../+state/vehicles.facade';
+import { VehiclesFacade } from '@codeweavers/vehicles-api';
 
 @Component({
   selector: 'cw-vehicle-list',

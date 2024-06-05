@@ -1,9 +1,11 @@
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  ResolveFn,
+  RouterStateSnapshot,
+} from '@angular/router';
+import { VehiclesEntity, VehiclesFacade } from '@codeweavers/vehicles-api';
 import { take } from 'rxjs';
-
-import { VehiclesFacade } from '../+state/vehicles.facade';
-import { VehiclesEntity } from '../+state/vehicles.models';
 
 export const vehicleResolver: ResolveFn<VehiclesEntity | undefined> = (
   route: ActivatedRouteSnapshot,
@@ -11,6 +13,8 @@ export const vehicleResolver: ResolveFn<VehiclesEntity | undefined> = (
 ) => {
   const vehiclesFacade = inject(VehiclesFacade);
   return vehiclesFacade
-    .selectVehicleByRegistrationNumber(route.paramMap.get('registrationNumber') ?? '')
+    .selectVehicleByRegistrationNumber(
+      route.paramMap.get('registrationNumber') ?? ''
+    )
     .pipe(take(1));
-}
+};

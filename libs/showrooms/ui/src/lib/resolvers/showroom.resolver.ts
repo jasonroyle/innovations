@@ -1,9 +1,11 @@
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  ResolveFn,
+  RouterStateSnapshot,
+} from '@angular/router';
+import { ShowroomsEntity, ShowroomsFacade } from '@codeweavers/showrooms-api';
 import { take } from 'rxjs';
-
-import { ShowroomsFacade } from '../+state/showrooms.facade';
-import { ShowroomsEntity } from '../+state/showrooms.models';
 
 export const showroomResolver: ResolveFn<ShowroomsEntity | undefined> = (
   route: ActivatedRouteSnapshot,
@@ -13,4 +15,4 @@ export const showroomResolver: ResolveFn<ShowroomsEntity | undefined> = (
   return showroomsFacade
     .selectShowroomBySlug(route.paramMap.get('slug') ?? '')
     .pipe(take(1));
-}
+};
