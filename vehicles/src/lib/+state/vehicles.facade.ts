@@ -15,10 +15,17 @@ export class VehiclesFacade {
    * and expose them as observables through the facade.
    */
   loaded$ = this.store.pipe(select(VehiclesSelectors.selectVehiclesLoaded));
-  allVehicleDetails$ = this.store.pipe(select(VehiclesSelectors.selectAllVehicleDetails));
+  allVehicleDetails$ = this.store.pipe(
+    select(VehiclesSelectors.selectAllVehicleDetails)
+  );
+  allVehicleDetailsWithoutShowroom$ = this.store.pipe(
+    select(VehiclesSelectors.selectAllVehicleDetailsWithoutShowroom)
+  );
   allVehicles$ = this.store.pipe(select(VehiclesSelectors.selectAllVehicles));
   selectedVehicle$ = this.store.pipe(select(VehiclesSelectors.selectEntity));
-  selectedVehicleDetail$ = this.store.pipe(select(VehiclesSelectors.selectEntityDetail));
+  selectedVehicleDetail$ = this.store.pipe(
+    select(VehiclesSelectors.selectEntityDetail)
+  );
 
   /**
    * Use the initialization action to perform one
@@ -33,10 +40,32 @@ export class VehiclesFacade {
   }
 
   selectVehicleByRegistrationNumber(id: string) {
-    return this.store.pipe(select(VehiclesSelectors.selectEntityByRegistrationNumber(id)));
+    return this.store.pipe(
+      select(VehiclesSelectors.selectEntityByRegistrationNumber(id))
+    );
   }
 
   selectVehicleDetailsByManufacturerId(manufacturerId: string) {
-    return this.store.pipe(select(VehiclesSelectors.selectVehicleDetailsByManufacturerId(manufacturerId)));
+    return this.store.pipe(
+      select(
+        VehiclesSelectors.selectVehicleDetailsByManufacturerId(manufacturerId)
+      )
+    );
+  }
+
+  selectVehicleDetailsByShowroomId(showroomId: string) {
+    return this.store.pipe(
+      select(VehiclesSelectors.selectVehicleDetailsByShowroomId(showroomId))
+    );
+  }
+
+  selectVehicleDetailsWithoutShowroomByManufacturerId(manufacturerId: string) {
+    return this.store.pipe(
+      select(
+        VehiclesSelectors.selectAllVehicleDetailsWithoutShowroomByManufacturerId(
+          manufacturerId
+        )
+      )
+    );
   }
 }

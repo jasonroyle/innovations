@@ -45,18 +45,8 @@ const reducer = createReducer(
   ),
   on(ShowroomsActions.selectShowroom_showroomDetail, (state, { id }) => ({
     ...state,
-    selectedId: id
-  })),
-  on(ShowroomsActions.addVehicle_showroomDetail, (state, { vehicleId }) => {
-    const { selectedId } = state;
-    return selectedId ? showroomsAdapter.mapOne({
-      id: selectedId,
-      map: showroom => ({
-        ...showroom,
-        vehicleIds: [...showroom.vehicleIds, vehicleId]
-      })
-    }, state) : state;
-  })
+    selectedId: id,
+  }))
 );
 
 export function showroomsReducer(
@@ -67,5 +57,5 @@ export function showroomsReducer(
 }
 
 export const showroomsMetaReducers: MetaReducer[] = [
-  new StoreHydration().createReducer
+  new StoreHydration().createReducer,
 ];

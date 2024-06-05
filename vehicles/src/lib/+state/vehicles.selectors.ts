@@ -1,11 +1,27 @@
-import { selectManufacturersEntities } from '@codeweavers/manufacturers';
+import {
+  ManufacturersEntity,
+  selectManufacturersEntities,
+} from '@codeweavers/manufacturers';
+import { Dictionary } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { VehicleDetail, VehiclesEntity } from './vehicles.models';
 import {
   VEHICLES_FEATURE_KEY,
   VehiclesState,
   vehiclesAdapter,
 } from './vehicles.reducer';
+
+const vehicleDetail = ({
+  manufacturers,
+  vehicle,
+}: {
+  manufacturers?: Dictionary<ManufacturersEntity>;
+  vehicle: VehiclesEntity;
+}): VehicleDetail => ({
+  manufacturer: manufacturers?.[vehicle.manufacturerId],
+  vehicle,
+});
 
 // Lookup the 'Vehicles' feature state managed by NgRx
 export const selectVehiclesState =
@@ -32,16 +48,33 @@ export const selectAllVehicleDetails = createSelector(
   selectAllVehicles,
   selectManufacturersEntities,
   (vehicles, manufacturers) =>
-    vehicles.map(vehicle => ({
-      vehicle,
-      manufacturer: manufacturers[vehicle.manufacturerId]
-    }))
+    vehicles.map((vehicle) => vehicleDetail({ manufacturers, vehicle }))
 );
 
-export const selectVehicleDetailsByManufacturerId = (manufacturerId: string) => createSelector(
+export const selectAllVehicleDetailsWithoutShowroom = createSelector(
   selectAllVehicleDetails,
-  vehicles => vehicles.filter(({ vehicle }) => vehicle.manufacturerId === manufacturerId)
+  (vehicleDetails) =>
+    vehicleDetails.filter(({ vehicle }) => !vehicle.showroomId)
 );
+
+export const selectAllVehicleDetailsWithoutShowroomByManufacturerId = (
+  manufacturerId: string
+) =>
+  createSelector(selectAllVehicleDetailsWithoutShowroom, (vehicleDetails) =>
+    vehicleDetails.filter(
+      ({ manufacturer }) => manufacturer?.id === manufacturerId
+    )
+  );
+
+export const selectVehicleDetailsByManufacturerId = (manufacturerId: string) =>
+  createSelector(selectAllVehicleDetails, (vehicles) =>
+    vehicles.filter(({ vehicle }) => vehicle.manufacturerId === manufacturerId)
+  );
+
+export const selectVehicleDetailsByShowroomId = (showroomId: string) =>
+  createSelector(selectAllVehicleDetails, (vehicles) =>
+    vehicles.filter(({ vehicle }) => vehicle.showroomId === showroomId)
+  );
 
 export const selectVehiclesEntities = createSelector(
   selectVehiclesState,
@@ -62,13 +95,12 @@ export const selectEntity = createSelector(
 export const selectEntityDetail = createSelector(
   selectEntity,
   selectManufacturersEntities,
-  (vehicle, manufacturers) => ({
-    vehicle,
-    manufacturer: vehicle ? manufacturers[vehicle.manufacturerId] : undefined
-  })
+  (vehicle, manufacturers): VehicleDetail | undefined =>
+    vehicle ? vehicleDetail({ manufacturers, vehicle }) : undefined
 );
 
-export const selectEntityByRegistrationNumber = (registrationNumber: string) => createSelector(
-  selectVehiclesEntities,
-  vehicles => vehicles[registrationNumber]
-);
+export const selectEntityByRegistrationNumber = (registrationNumber: string) =>
+  createSelector(
+    selectVehiclesEntities,
+    (vehicles) => vehicles[registrationNumber]
+  );

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { VehicleDetail, VehiclesFacade } from '@codeweavers/vehicles';
+import { Observable, Subject, takeUntil } from 'rxjs';
 
 import { ShowroomsFacade } from '../../+state/showrooms.facade';
 
@@ -14,20 +15,27 @@ export class ShowroomDetailComponent {
   private readonly _route = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _showroomsFacade = inject(ShowroomsFacade);
-  public readonly detail$ = this._showroomsFacade.selectedShowroomDetail$;
+  private readonly _vehiclesFacade = inject(VehiclesFacade);
+  public readonly showroomDetail$ =
+    this._showroomsFacade.selectedShowroomDetail$;
+  public vehicleDetails$?: Observable<VehicleDetail[]>;
 
   constructor() {
-    this._route.data.pipe(takeUntil(this._destroy$)).subscribe(({ showroom }) => {
-      if (!showroom) {
-        this._router.navigate(['../'], { relativeTo: this._route });
-        return;
-      }
-      this._showroomsFacade.dispatch(
-        this._showroomsFacade.actions.selectShowroom_showroomDetail({
-          id: showroom.id
-        })
-      );
-    });
+    this._route.data
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(({ showroom }) => {
+        if (!showroom) {
+          this._router.navigate(['../'], { relativeTo: this._route });
+          return;
+        }
+        this._showroomsFacade.dispatch(
+          this._showroomsFacade.actions.selectShowroom_showroomDetail({
+            id: showroom.id,
+          })
+        );
+        this.vehicleDetails$ =
+          this._vehiclesFacade.selectVehicleDetailsByShowroomId(showroom.id);
+      });
   }
 
   public ngOnDestroy(): void {

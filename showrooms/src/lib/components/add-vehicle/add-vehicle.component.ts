@@ -1,5 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { VehiclesFacade } from '@codeweavers/vehicles';
 
 import { ShowroomsFacade } from '../../+state/showrooms.facade';
 import { Showroom } from '../../models/showroom';
@@ -14,21 +15,25 @@ interface VehicleForm {
   styleUrl: './add-vehicle.component.scss',
 })
 export class AddVehicleComponent {
-  private _showroom?: Showroom
+  private _showroom?: Showroom;
   private readonly _showroomsFacade = inject(ShowroomsFacade);
-  public vehicleDetails$ = this._showroomsFacade.allVehicleDetailsWithoutShowroom$;
+  private readonly _vehiclesFacade = inject(VehiclesFacade);
+  public vehicleDetails$ =
+    this._vehiclesFacade.allVehicleDetailsWithoutShowroom$;
   public readonly vehicleForm = new FormGroup<VehicleForm>({
-    vehicleId: new FormControl(null, [Validators.required])
+    vehicleId: new FormControl(null, [Validators.required]),
   });
 
   @Input() public set showroom(showroom: Showroom | undefined) {
     this._showroom = showroom;
     if (showroom?.manufacturerId) {
-      this.vehicleDetails$ = this._showroomsFacade.selectVehicleDetailsWithoutShowroomByManufacturerId(
-        showroom.manufacturerId
-      );
+      this.vehicleDetails$ =
+        this._vehiclesFacade.selectVehicleDetailsWithoutShowroomByManufacturerId(
+          showroom.manufacturerId
+        );
     } else {
-      this.vehicleDetails$ = this._showroomsFacade.allVehicleDetailsWithoutShowroom$;
+      this.vehicleDetails$ =
+        this._vehiclesFacade.allVehicleDetailsWithoutShowroom$;
     }
   }
 
@@ -39,9 +44,10 @@ export class AddVehicleComponent {
   public addVehicle(): void {
     const value = this.vehicleForm.value;
     if (!value.vehicleId) return;
-    this._showroomsFacade.dispatch(
-      this._showroomsFacade.actions.addVehicle_showroomDetail({
-        vehicleId: value.vehicleId
+    this._vehiclesFacade.dispatch(
+      this._vehiclesFacade.actions.linkShowroom_showroomAddVehicle({
+        registrationNumber: value.vehicleId,
+        showroomId: this.showroom?.id,
       })
     );
     this.vehicleForm.reset();
