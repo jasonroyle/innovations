@@ -12,3 +12,5 @@ export const loadManufacturersFailure = createAction(
   '[Manufacturers/API] Load Manufacturers Failure',
   props<{ error: any }>()
 );
+
+export const publicActions = {};

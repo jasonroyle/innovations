@@ -8,6 +8,7 @@ import * as ManufacturersSelectors from './manufacturers.selectors';
 @Injectable()
 export class ManufacturersFacade {
   private readonly store = inject(Store);
+  public readonly actions = ManufacturersActions;
 
   /**
    * Combine pieces of state using createSelector,
@@ -17,7 +18,7 @@ export class ManufacturersFacade {
     select(ManufacturersSelectors.selectManufacturersLoaded)
   );
   allManufacturers$ = this.store.pipe(
-    select(ManufacturersSelectors.selectAllManufacturers)
+    select(ManufacturersSelectors.selectAllManufacturersSorted)
   );
   selectedManufacturers$ = this.store.pipe(
     select(ManufacturersSelectors.selectEntity)
@@ -29,5 +30,9 @@ export class ManufacturersFacade {
    */
   init() {
     this.store.dispatch(ManufacturersActions.initManufacturers());
+  }
+
+  dispatch(action: Action): void {
+    this.store.dispatch(action);
   }
 }

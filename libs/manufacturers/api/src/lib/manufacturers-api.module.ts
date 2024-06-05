@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import * as fromManufacturers from './+state/manufacturers.reducer';
+
 import { ManufacturersEffects } from './+state/manufacturers.effects';
 import { ManufacturersFacade } from './+state/manufacturers.facade';
+import * as fromManufacturers from './+state/manufacturers.reducer';
+import { ManufacturersService } from './services/manufacturers.service';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { ManufacturersFacade } from './+state/manufacturers.facade';
     ),
     EffectsModule.forFeature([ManufacturersEffects]),
   ],
-  providers: [ManufacturersFacade],
+  providers: [ManufacturersFacade, ManufacturersService],
 })
 export class ManufacturersApiModule {}

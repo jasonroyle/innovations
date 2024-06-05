@@ -39,6 +39,7 @@ const reducer = createReducer(
   ),
   on(ManufacturersActions.loadManufacturersFailure, (state, { error }) => ({
     ...state,
+    loaded: true,
     error,
   }))
 );

@@ -26,6 +26,15 @@ export const selectAllManufacturers = createSelector(
   (state: ManufacturersState) => selectAll(state)
 );
 
+export const selectAllManufacturersSorted = createSelector(
+  selectAllManufacturers,
+  (manufacturers) =>
+    manufacturers.sort((a, b) => {
+      if (a.name === b.name) return 0;
+      return a.name < b.name ? -1 : 1;
+    })
+);
+
 export const selectManufacturersEntities = createSelector(
   selectManufacturersState,
   (state: ManufacturersState) => selectEntities(state)
