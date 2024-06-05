@@ -1,10 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreModule } from '@ngrx/store';
+import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
-import * as fromVehicles from './+state/vehicles.reducer';
+import { StoreModule } from '@ngrx/store';
+
 import { VehiclesEffects } from './+state/vehicles.effects';
 import { VehiclesFacade } from './+state/vehicles.facade';
+import * as fromVehicles from './+state/vehicles.reducer';
+import { RegistrationNumberPipe } from './pipes/registration-number/registration-number.pipe';
+import { VehiclesService } from './services/vehicles.service';
+
+const exports = [RegistrationNumberPipe];
 
 @NgModule({
   imports: [
@@ -15,6 +20,8 @@ import { VehiclesFacade } from './+state/vehicles.facade';
     ),
     EffectsModule.forFeature([VehiclesEffects]),
   ],
-  providers: [VehiclesFacade],
+  providers: [VehiclesFacade, VehiclesService],
+  declarations: [...exports],
+  exports,
 })
 export class VehiclesApiModule {}

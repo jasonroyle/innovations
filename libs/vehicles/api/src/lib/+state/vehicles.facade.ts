@@ -8,14 +8,24 @@ import * as VehiclesSelectors from './vehicles.selectors';
 @Injectable()
 export class VehiclesFacade {
   private readonly store = inject(Store);
+  public readonly actions = VehiclesActions.publicActions;
 
   /**
    * Combine pieces of state using createSelector,
    * and expose them as observables through the facade.
    */
   loaded$ = this.store.pipe(select(VehiclesSelectors.selectVehiclesLoaded));
+  allVehicleDetails$ = this.store.pipe(
+    select(VehiclesSelectors.selectAllVehicleDetails)
+  );
+  allVehicleDetailsWithoutShowroom$ = this.store.pipe(
+    select(VehiclesSelectors.selectAllVehicleDetailsWithoutShowroom)
+  );
   allVehicles$ = this.store.pipe(select(VehiclesSelectors.selectAllVehicles));
-  selectedVehicles$ = this.store.pipe(select(VehiclesSelectors.selectEntity));
+  selectedVehicle$ = this.store.pipe(select(VehiclesSelectors.selectEntity));
+  selectedVehicleDetail$ = this.store.pipe(
+    select(VehiclesSelectors.selectEntityDetail)
+  );
 
   /**
    * Use the initialization action to perform one
@@ -23,5 +33,39 @@ export class VehiclesFacade {
    */
   init() {
     this.store.dispatch(VehiclesActions.initVehicles());
+  }
+
+  dispatch(action: Action) {
+    return this.store.dispatch(action);
+  }
+
+  selectVehicleByRegistrationNumber(id: string) {
+    return this.store.pipe(
+      select(VehiclesSelectors.selectEntityByRegistrationNumber(id))
+    );
+  }
+
+  selectVehicleDetailsByManufacturerId(manufacturerId: string) {
+    return this.store.pipe(
+      select(
+        VehiclesSelectors.selectVehicleDetailsByManufacturerId(manufacturerId)
+      )
+    );
+  }
+
+  selectVehicleDetailsByShowroomId(showroomId: string) {
+    return this.store.pipe(
+      select(VehiclesSelectors.selectVehicleDetailsByShowroomId(showroomId))
+    );
+  }
+
+  selectVehicleDetailsWithoutShowroomByManufacturerId(manufacturerId: string) {
+    return this.store.pipe(
+      select(
+        VehiclesSelectors.selectAllVehicleDetailsWithoutShowroomByManufacturerId(
+          manufacturerId
+        )
+      )
+    );
   }
 }
