@@ -56,6 +56,9 @@ export const selectEntityDetail = createSelector(
   })
 );
 
+export const selectEntityById = (id: string) =>
+  createSelector(selectShowroomsEntities, (showrooms) => showrooms[id]);
+
 export const selectEntityBySlug = (slug: string) =>
   createSelector(selectAllShowrooms, (showrooms) =>
     showrooms.find((showroom) => showroom.slug === slug)

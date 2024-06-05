@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ManufacturersApiModule } from '@codeweavers/manufacturers-api';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
@@ -13,9 +14,11 @@ import { ShowroomsService } from './services/showrooms.service';
     CommonModule,
     StoreModule.forFeature(
       fromShowrooms.SHOWROOMS_FEATURE_KEY,
-      fromShowrooms.showroomsReducer
+      fromShowrooms.showroomsReducer,
+      { metaReducers: fromShowrooms.showroomsMetaReducers }
     ),
     EffectsModule.forFeature([ShowroomsEffects]),
+    ManufacturersApiModule,
   ],
   providers: [ShowroomsFacade, ShowroomsService],
 })

@@ -6,5 +6,9 @@
     <dd>{{ detail.vehicle.registrationNumber | registrationNumber }}</dd>
     <dt>Colour</dt>
     <dd>{{ detail.vehicle.color }}</dd>
+    @if (showroom$ | async; as showroom) {
+      <dt>Showroom</dt>
+      <dd><a [routerLink]="['/showrooms', showroom.slug]">{{ showroom.name }}</a></dd>
+    }
   </dl>
 }

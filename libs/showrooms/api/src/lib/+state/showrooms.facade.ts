@@ -35,6 +35,10 @@ export class ShowroomsFacade {
     this.store.dispatch(action);
   }
 
+  selectShowroomById(id: string) {
+    return this.store.pipe(select(ShowroomsSelectors.selectEntityById(id)));
+  }
+
   selectShowroomBySlug(slug: string) {
     return this.store.pipe(select(ShowroomsSelectors.selectEntityBySlug(slug)));
   }

@@ -16,7 +16,8 @@ const exports = [RegistrationNumberPipe];
     CommonModule,
     StoreModule.forFeature(
       fromVehicles.VEHICLES_FEATURE_KEY,
-      fromVehicles.vehiclesReducer
+      fromVehicles.vehiclesReducer,
+      { metaReducers: fromVehicles.vehiclesMetaReducers }
     ),
     EffectsModule.forFeature([VehiclesEffects]),
   ],
