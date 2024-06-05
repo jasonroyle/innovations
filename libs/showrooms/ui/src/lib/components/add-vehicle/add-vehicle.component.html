@@ -1,0 +1,20 @@
+<form [formGroup]="vehicleForm" (ngSubmit)="addVehicle()">
+  <fieldset>
+    <div>
+      <label for="showroom-vehicleId">Vehicle</label>
+      <select id="showroom-vehicleId" formControlName="vehicleId">
+        @for (detail of vehicleDetails$ | async; track detail.vehicle.registrationNumber) {
+          <option [value]="detail.vehicle.registrationNumber">
+            @if (!showroom?.manufacturerId) {
+              {{ detail.manufacturer?.name }}
+            }
+            {{ detail.vehicle.model }} - {{ detail.vehicle.registrationNumber | registrationNumber }}
+          </option>
+        }
+      </select>
+    </div>
+  </fieldset>
+  <button [disabled]="vehicleForm.invalid" type="submit">
+    Add
+  </button>
+</form>
