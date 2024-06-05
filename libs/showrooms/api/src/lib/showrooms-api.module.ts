@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreModule } from '@ngrx/store';
+import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
-import * as fromShowrooms from './+state/showrooms.reducer';
+import { StoreModule } from '@ngrx/store';
+
 import { ShowroomsEffects } from './+state/showrooms.effects';
 import { ShowroomsFacade } from './+state/showrooms.facade';
+import * as fromShowrooms from './+state/showrooms.reducer';
+import { ShowroomsService } from './services/showrooms.service';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { ShowroomsFacade } from './+state/showrooms.facade';
     ),
     EffectsModule.forFeature([ShowroomsEffects]),
   ],
-  providers: [ShowroomsFacade],
+  providers: [ShowroomsFacade, ShowroomsService],
 })
 export class ShowroomsApiModule {}
