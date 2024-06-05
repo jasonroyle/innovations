@@ -1,0 +1,13 @@
+<ul class="nav-list">
+  @for (detail of details$ | async; track detail.vehicle.registrationNumber) {
+    <li class="nav-item">
+      <a [routerLink]="[detail.vehicle.registrationNumber]" routerLinkActive="nav-active">
+        {{ detail.manufacturer?.name }}
+        {{ detail.vehicle.model }}
+        <small>
+          {{ detail.vehicle.registrationNumber | registrationNumber }}
+        </small>
+      </a>
+    </li>
+  }
+</ul>
