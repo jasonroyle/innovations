@@ -1,12 +1,12 @@
 import { Component, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VehiclesFacade } from '@codeweavers/vehicles-api';
+import { VehiclesFacade } from '@innovations/vehicles-api';
 import { Subject, takeUntil } from 'rxjs';
 
 import { VehiclesUiFacade } from '../../+state/vehicles-ui.facade';
 
 @Component({
-  selector: 'cw-vehicle-detail',
+  selector: 'innov-vehicle-detail',
   templateUrl: './vehicle-detail.component.html',
   styleUrl: './vehicle-detail.component.scss',
 })

@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { VehiclesFacade } from '@codeweavers/vehicles-api';
+import { VehiclesFacade } from '@innovations/vehicles-api';
 import { select } from '@ngrx/store';
 
 import * as VehiclesSelectors from './vehicles-ui.selectors';

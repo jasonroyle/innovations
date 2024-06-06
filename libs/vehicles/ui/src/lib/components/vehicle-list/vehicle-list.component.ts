@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { VehiclesUiFacade } from '../../+state/vehicles-ui.facade';
 
 @Component({
-  selector: 'cw-vehicle-list',
+  selector: 'innov-vehicle-list',
   templateUrl: './vehicle-list.component.html',
   styleUrl: './vehicle-list.component.scss',
 })

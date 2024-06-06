@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ManufacturersApiModule } from '@codeweavers/manufacturers-api';
-import { SharedModule } from '@codeweavers/shared';
-import { ShowroomsApiModule } from '@codeweavers/showrooms-api';
-import { VehiclesApiModule } from '@codeweavers/vehicles-api';
+import { ManufacturersApiModule } from '@innovations/manufacturers-api';
+import { SharedModule } from '@innovations/shared';
+import { ShowroomsApiModule } from '@innovations/showrooms-api';
+import { VehiclesApiModule } from '@innovations/vehicles-api';
 
 import { ShowroomsUiFacade } from './+state/showrooms-ui.facade';
 import { AddShowroomComponent } from './components/add-showroom/add-showroom.component';

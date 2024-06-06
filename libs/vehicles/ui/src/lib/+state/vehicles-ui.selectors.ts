@@ -1,6 +1,6 @@
-import { selectManufacturersEntities } from '@codeweavers/manufacturers-api';
-import { selectShowroomsEntities } from '@codeweavers/showrooms-api';
-import { selectAllVehicles, selectEntity } from '@codeweavers/vehicles-api';
+import { selectManufacturersEntities } from '@innovations/manufacturers-api';
+import { selectShowroomsEntities } from '@innovations/showrooms-api';
+import { selectAllVehicles, selectEntity } from '@innovations/vehicles-api';
 import { createSelector } from '@ngrx/store';
 
 export const selectSelectedVehicleDetail = createSelector(

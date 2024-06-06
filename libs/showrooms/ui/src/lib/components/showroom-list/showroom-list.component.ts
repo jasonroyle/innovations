@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { ShowroomsFacade } from '@codeweavers/showrooms-api';
+import { ShowroomsFacade } from '@innovations/showrooms-api';
 
 @Component({
-  selector: 'cw-showroom-list',
+  selector: 'innov-showroom-list',
   templateUrl: './showroom-list.component.html',
   styleUrl: './showroom-list.component.scss',
 })

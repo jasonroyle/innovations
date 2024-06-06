@@ -1,4 +1,4 @@
-import { StoreHydration } from '@codeweavers/shared';
+import { StoreHydration } from '@innovations/shared';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { MetaReducer, createReducer, on, Action } from '@ngrx/store';
 

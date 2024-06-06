@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ManufacturersFacade } from '@codeweavers/manufacturers-api';
+import { ManufacturersFacade } from '@innovations/manufacturers-api';
 import {
   ShowroomsEntity,
   ShowroomsFacade,
   ShowroomsService,
-} from '@codeweavers/showrooms-api';
+} from '@innovations/showrooms-api';
 
 interface ShowroomForm {
   manufacturerId: FormControl<string | null>;
@@ -13,7 +13,7 @@ interface ShowroomForm {
 }
 
 @Component({
-  selector: 'cw-add-showroom',
+  selector: 'innov-add-showroom',
   templateUrl: './add-showroom.component.html',
   styleUrl: './add-showroom.component.scss',
 })

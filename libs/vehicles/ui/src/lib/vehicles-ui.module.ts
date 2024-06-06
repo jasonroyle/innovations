@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ManufacturersApiModule } from '@codeweavers/manufacturers-api';
-import { SharedModule } from '@codeweavers/shared';
-import { ShowroomsApiModule } from '@codeweavers/showrooms-api';
-import { VehiclesApiModule } from '@codeweavers/vehicles-api';
+import { ManufacturersApiModule } from '@innovations/manufacturers-api';
+import { SharedModule } from '@innovations/shared';
+import { ShowroomsApiModule } from '@innovations/showrooms-api';
+import { VehiclesApiModule } from '@innovations/vehicles-api';
 
 import { VehiclesUiFacade } from './+state/vehicles-ui.facade';
 import { VehicleDetailComponent } from './components/vehicle-detail/vehicle-detail.component';

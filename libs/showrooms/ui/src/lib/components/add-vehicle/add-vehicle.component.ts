@@ -1,7 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Showroom } from '@codeweavers/showrooms-api';
-import { VehiclesFacade } from '@codeweavers/vehicles-api';
+import { Showroom } from '@innovations/showrooms-api';
+import { VehiclesFacade } from '@innovations/vehicles-api';
 
 import { ShowroomsUiFacade } from '../../+state/showrooms-ui.facade';
 
@@ -10,7 +10,7 @@ interface VehicleForm {
 }
 
 @Component({
-  selector: 'cw-add-vehicle',
+  selector: 'innov-add-vehicle',
   templateUrl: './add-vehicle.component.html',
   styleUrl: './add-vehicle.component.scss',
 })

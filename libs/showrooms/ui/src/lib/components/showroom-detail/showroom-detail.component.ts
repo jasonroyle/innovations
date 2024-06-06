@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ShowroomsFacade } from '@codeweavers/showrooms-api';
+import { ShowroomsFacade } from '@innovations/showrooms-api';
 import { Subject, takeUntil } from 'rxjs';
 
 import { ShowroomsUiFacade } from '../../+state/showrooms-ui.facade';
 
 @Component({
-  selector: 'cw-showroom-detail',
+  selector: 'innov-showroom-detail',
   templateUrl: './showroom-detail.component.html',
   styleUrl: './showroom-detail.component.scss',
 })
