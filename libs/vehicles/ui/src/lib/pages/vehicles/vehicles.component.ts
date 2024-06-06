@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'cw-vehicles',
+  selector: 'innov-vehicles',
   templateUrl: './vehicles.component.html',
   styleUrl: './vehicles.component.scss',
 })

@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { ShowroomsFacade } from '@codeweavers/showrooms-api';
+import { ShowroomsFacade } from '@innovations/showrooms-api';
 import { select } from '@ngrx/store';
 
 import * as ShowroomsSelectors from './showrooms-ui.selectors';

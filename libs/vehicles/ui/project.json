@@ -2,7 +2,7 @@
   "name": "vehicles-ui",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/vehicles/ui/src",
-  "prefix": "cw",
+  "prefix": "innov",
   "projectType": "library",
   "tags": [],
   "targets": {

@@ -4,7 +4,7 @@ import {
   ResolveFn,
   RouterStateSnapshot,
 } from '@angular/router';
-import { VehiclesEntity, VehiclesFacade } from '@codeweavers/vehicles-api';
+import { VehiclesEntity, VehiclesFacade } from '@innovations/vehicles-api';
 import { take } from 'rxjs';
 
 export const vehicleResolver: ResolveFn<VehiclesEntity | undefined> = (

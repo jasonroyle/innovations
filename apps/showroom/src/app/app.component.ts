@@ -6,7 +6,7 @@ interface NavItem {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'innov-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -14,11 +14,11 @@ export class AppComponent {
   navItems: NavItem[] = [
     {
       commands: ['/vehicles'],
-      text: 'Vehicles'
+      text: 'Vehicles',
     },
     {
       commands: ['/showrooms'],
-      text: 'Showrooms'
-    }
+      text: 'Showrooms',
+    },
   ];
 }

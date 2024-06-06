@@ -4,7 +4,7 @@ import {
   ResolveFn,
   RouterStateSnapshot,
 } from '@angular/router';
-import { ShowroomsEntity, ShowroomsFacade } from '@codeweavers/showrooms-api';
+import { ShowroomsEntity, ShowroomsFacade } from '@innovations/showrooms-api';
 import { take } from 'rxjs';
 
 export const showroomResolver: ResolveFn<ShowroomsEntity | undefined> = (

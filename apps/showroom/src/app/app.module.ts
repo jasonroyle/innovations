@@ -25,9 +25,9 @@ import { appRoutes } from './app.routes';
     ),
     StoreDevtoolsModule.instrument({
       logOnly: !isDevMode(),
-      maxAge: 25
+      maxAge: 25,
     }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
