@@ -18,7 +18,12 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/showroom/src/favicon.ico", "apps/showroom/src/assets"],
         "styles": ["apps/showroom/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/shared/src/lib/styles"
+          ]
+        }
       },
       "configurations": {
         "production": {
