@@ -41,7 +41,7 @@ export const selectAllVehicleDetails = createSelector(
 
 export const selectVehicleDetailsWithoutShowroom = createSelector(
   selectAllVehicleDetails,
-  (vehicles) => vehicles.filter((vehicle) => !!vehicle.showroom)
+  (vehicles) => vehicles.filter((vehicle) => !vehicle.showroom)
 );
 
 export const selectVehicleDetailsWithoutShowroomByManufacturerId = (
