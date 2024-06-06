@@ -1,4 +1,3 @@
-import { selectManufacturersEntities } from '@codeweavers/manufacturers-api';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import {
@@ -43,17 +42,6 @@ export const selectEntity = createSelector(
   selectShowroomsEntities,
   selectSelectedId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
-);
-
-export const selectEntityDetail = createSelector(
-  selectEntity,
-  selectManufacturersEntities,
-  (showroom, manufacturers) => ({
-    showroom,
-    manufacturer: showroom?.manufacturerId
-      ? manufacturers[showroom.manufacturerId]
-      : undefined,
-  })
 );
 
 export const selectEntityById = (id: string) =>

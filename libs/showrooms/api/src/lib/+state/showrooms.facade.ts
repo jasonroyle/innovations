@@ -7,7 +7,8 @@ import * as ShowroomsSelectors from './showrooms.selectors';
 
 @Injectable()
 export class ShowroomsFacade {
-  private readonly store = inject(Store);
+  private readonly store: Store<ShowroomsFeature.ShowroomsPartialState> =
+    inject(Store);
   public readonly actions = ShowroomsActions.publicActions;
 
   /**
@@ -19,9 +20,7 @@ export class ShowroomsFacade {
     select(ShowroomsSelectors.selectAllShowrooms)
   );
   selectedShowroom$ = this.store.pipe(select(ShowroomsSelectors.selectEntity));
-  selectedShowroomDetail$ = this.store.pipe(
-    select(ShowroomsSelectors.selectEntityDetail)
-  );
+  store$ = this.store.pipe();
 
   /**
    * Use the initialization action to perform one

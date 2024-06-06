@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShowroomsFacade } from '@codeweavers/showrooms-api';
-import { VehicleDetail, VehiclesFacade } from '@codeweavers/vehicles-api';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+
+import { ShowroomsUiFacade } from '../../+state/showrooms-ui.facade';
 
 @Component({
   selector: 'cw-showroom-detail',
@@ -14,10 +15,9 @@ export class ShowroomDetailComponent {
   private readonly _route = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _showroomsFacade = inject(ShowroomsFacade);
-  private readonly _vehiclesFacade = inject(VehiclesFacade);
+  private readonly _showroomsUiFacade = inject(ShowroomsUiFacade);
   public readonly showroomDetail$ =
-    this._showroomsFacade.selectedShowroomDetail$;
-  public vehicleDetails$?: Observable<VehicleDetail[]>;
+    this._showroomsUiFacade.selectedShowroomDetail$;
 
   constructor() {
     this._route.data
@@ -32,8 +32,6 @@ export class ShowroomDetailComponent {
             id: showroom.id,
           })
         );
-        this.vehicleDetails$ =
-          this._vehiclesFacade.selectVehicleDetailsByShowroomId(showroom.id);
       });
   }
 

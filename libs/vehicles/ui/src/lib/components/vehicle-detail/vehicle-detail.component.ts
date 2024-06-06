@@ -1,8 +1,9 @@
 import { Component, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Showroom, ShowroomsFacade } from '@codeweavers/showrooms-api';
 import { VehiclesFacade } from '@codeweavers/vehicles-api';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+
+import { VehiclesUiFacade } from '../../+state/vehicles-ui.facade';
 
 @Component({
   selector: 'cw-vehicle-detail',
@@ -13,10 +14,10 @@ export class VehicleDetailComponent implements OnDestroy {
   private readonly _destroy$ = new Subject<void>();
   private readonly _route = inject(ActivatedRoute);
   private readonly _router = inject(Router);
-  private readonly _showroomsFacade = inject(ShowroomsFacade);
   private readonly _vehiclesFacade = inject(VehiclesFacade);
-  public readonly detail$ = this._vehiclesFacade.selectedVehicleDetail$;
-  public showroom$?: Observable<Showroom | undefined>;
+  private readonly _vehiclesUiFacade = inject(VehiclesUiFacade);
+  public readonly vehicleDetail$ =
+    this._vehiclesUiFacade.selectedVehicleDetail$;
 
   constructor() {
     this._route.data
@@ -29,9 +30,6 @@ export class VehicleDetailComponent implements OnDestroy {
             registrationNumber: vehicle.registrationNumber,
           })
         );
-        this.showroom$ = vehicle.showroomId
-          ? this._showroomsFacade.selectShowroomById(vehicle.showroomId)
-          : undefined;
       });
   }
 

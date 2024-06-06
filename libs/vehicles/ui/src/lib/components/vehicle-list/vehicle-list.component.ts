@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { VehiclesFacade } from '@codeweavers/vehicles-api';
+
+import { VehiclesUiFacade } from '../../+state/vehicles-ui.facade';
 
 @Component({
   selector: 'cw-vehicle-list',
@@ -7,6 +8,6 @@ import { VehiclesFacade } from '@codeweavers/vehicles-api';
   styleUrl: './vehicle-list.component.scss',
 })
 export class VehicleListComponent {
-  private readonly _vehiclesFacade = inject(VehiclesFacade);
-  public readonly details$ = this._vehiclesFacade.allVehicleDetails$;
+  private readonly _vehiclesUiFacade = inject(VehiclesUiFacade);
+  public readonly details$ = this._vehiclesUiFacade.allVehicleDetails$;
 }

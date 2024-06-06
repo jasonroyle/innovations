@@ -1,7 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Showroom, ShowroomsFacade } from '@codeweavers/showrooms-api';
+import { Showroom } from '@codeweavers/showrooms-api';
 import { VehiclesFacade } from '@codeweavers/vehicles-api';
+
+import { ShowroomsUiFacade } from '../../+state/showrooms-ui.facade';
 
 interface VehicleForm {
   vehicleId: FormControl<string | null>;
@@ -14,10 +16,10 @@ interface VehicleForm {
 })
 export class AddVehicleComponent {
   private _showroom?: Showroom;
-  private readonly _showroomsFacade = inject(ShowroomsFacade);
+  private readonly _showroomsUiFacade = inject(ShowroomsUiFacade);
   private readonly _vehiclesFacade = inject(VehiclesFacade);
   public vehicleDetails$ =
-    this._vehiclesFacade.allVehicleDetailsWithoutShowroom$;
+    this._showroomsUiFacade.vehicleDetailsWithoutShowroom$;
   public readonly vehicleForm = new FormGroup<VehicleForm>({
     vehicleId: new FormControl(null, [Validators.required]),
   });
@@ -26,12 +28,12 @@ export class AddVehicleComponent {
     this._showroom = showroom;
     if (showroom?.manufacturerId) {
       this.vehicleDetails$ =
-        this._vehiclesFacade.selectVehicleDetailsWithoutShowroomByManufacturerId(
+        this._showroomsUiFacade.vehicleDetailsWithoutShowroomByManufacturerId(
           showroom.manufacturerId
         );
     } else {
       this.vehicleDetails$ =
-        this._vehiclesFacade.allVehicleDetailsWithoutShowroom$;
+        this._showroomsUiFacade.vehicleDetailsWithoutShowroom$;
     }
   }
 

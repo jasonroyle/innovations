@@ -7,7 +7,8 @@ import * as ManufacturersSelectors from './manufacturers.selectors';
 
 @Injectable()
 export class ManufacturersFacade {
-  private readonly store = inject(Store);
+  private readonly store: Store<ManufacturersFeature.ManufacturersPartialState> =
+    inject(Store);
   public readonly actions = ManufacturersActions;
 
   /**
@@ -23,6 +24,7 @@ export class ManufacturersFacade {
   selectedManufacturers$ = this.store.pipe(
     select(ManufacturersSelectors.selectEntity)
   );
+  store$ = this.store.pipe();
 
   /**
    * Use the initialization action to perform one
