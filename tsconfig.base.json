@@ -14,7 +14,15 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@innovations/manufacturers-api": ["libs/manufacturers/api/src/index.ts"],
+      "@innovations/manufacturers-ui": ["libs/manufacturers/ui/src/index.ts"],
+      "@innovations/shared": ["libs/shared/src/index.ts"],
+      "@innovations/showrooms-api": ["libs/showrooms/api/src/index.ts"],
+      "@innovations/showrooms-ui": ["libs/showrooms/ui/src/index.ts"],
+      "@innovations/vehicles-api": ["libs/vehicles/api/src/index.ts"],
+      "@innovations/vehicles-ui": ["libs/vehicles/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
