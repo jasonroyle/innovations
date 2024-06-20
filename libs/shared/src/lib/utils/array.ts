@@ -21,10 +21,10 @@ export class ArrayUtil {
    * @example
    * ```ts
    * ArrayUtil.search(
-   *   ['foo', 'bar', true, 'foo bar', 10, 'foo bar 1', 'no match'],
+   *   ['foo', true, { a: 'foo', b: 1 }, 'foo bar', 10, 'foo bar 1', 'other'],
    *   'foo bar 1',
-   * )
-   * // Expected result: ['foo bar 1', 'foo bar', 'foo', 'bar', 10]
+   * );
+   * // Expected result: ['foo bar 1', 'foo bar', { a: 'foo', b: 1 } 'foo', 10]
    * ```
    *
    * @param arr - Array to search
@@ -68,9 +68,6 @@ export class ArrayUtil {
       .map((value) => [value, searchScore(value, weight ?? 1)] as const)
       .filter(([, score]) => !!score)
       .sort(([, a], [, b]) => (a - b) * -1)
-      .map(([value, score]) => {
-        console.log({ value, score });
-        return value;
-      });
+      .map(([value]) => value);
   }
 }
