@@ -1,7 +1,7 @@
 import { StringUtil, StringUtilSearchOptions } from './string';
 
 export interface ArrayUtilSearchOptions<T> extends StringUtilSearchOptions {
-  weight: ArrayUtilSearchWeight<T>;
+  weight?: ArrayUtilSearchWeight<T>;
 }
 
 export type ArrayUtilSearchWeight<T> = T extends string | number
@@ -38,7 +38,7 @@ export class ArrayUtil {
   public static search<T>(
     arr: T[],
     term: string,
-    { weight, ...options }: Partial<ArrayUtilSearchOptions<T>> = {}
+    { weight, ...options }: ArrayUtilSearchOptions<T> = {}
   ): T[] {
     const searchScore = (
       value: T,

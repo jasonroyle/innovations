@@ -1,6 +1,6 @@
 export interface StringUtilSearchOptions {
-  caseSensitive: boolean;
-  delimiter: RegExp | string;
+  caseSensitive?: boolean;
+  delimiter?: RegExp | string;
 }
 
 export class StringUtil {
@@ -17,7 +17,7 @@ export class StringUtil {
   public static search(
     str: string,
     term: string,
-    { caseSensitive, delimiter }: Partial<StringUtilSearchOptions> = {}
+    { caseSensitive, delimiter }: StringUtilSearchOptions = {}
   ): number {
     caseSensitive ??= false;
     delimiter ??= /\s+/g;
