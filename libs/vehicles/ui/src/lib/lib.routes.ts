@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 
-import { VehicleDetailComponent } from './components/vehicle-detail/vehicle-detail.component';
+import { VehicleDetailComponent } from './pages/vehicle-detail/vehicle-detail.component';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 import { vehicleResolver } from './resolvers/vehicle.resolver';
 

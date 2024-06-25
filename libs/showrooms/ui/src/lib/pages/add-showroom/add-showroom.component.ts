@@ -21,8 +21,8 @@ export class AddShowroomComponent {
   private readonly _manufacturersFacade = inject(ManufacturersFacade);
   private readonly _showroomsFacade = inject(ShowroomsFacade);
   private readonly _showroomsService = inject(ShowroomsService);
-  public manufacturers$ = this._manufacturersFacade.allManufacturers$;
-  public showroomForm = new FormGroup<ShowroomForm>({
+  public readonly manufacturers$ = this._manufacturersFacade.allManufacturers$;
+  public readonly showroomForm = new FormGroup<ShowroomForm>({
     manufacturerId: new FormControl<string | null>(null),
     name: new FormControl('', {
       nonNullable: true,

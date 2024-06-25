@@ -48,10 +48,19 @@ const reducer = createReducer(
     ShowroomsActions.searchShowrooms_showroomList,
     (state, { searchTerm }) => ({ ...state, searchTerm })
   ),
-  on(ShowroomsActions.selectShowroom_showroomDetail, (state, { id }) => ({
-    ...state,
-    selectedId: id,
-  }))
+  on(
+    ShowroomsActions.selectShowroom_editShowroom,
+    ShowroomsActions.selectShowroom_showroomDetail,
+    (state, { id }) => ({
+      ...state,
+      selectedId: id,
+    })
+  ),
+  on(
+    ShowroomsActions.updateShowroom_editShowroom,
+    (state, { showroom: { id, ...showroom } }) =>
+      showroomsAdapter.updateOne({ id, changes: showroom }, { ...state })
+  )
 );
 
 export function showroomsReducer(
