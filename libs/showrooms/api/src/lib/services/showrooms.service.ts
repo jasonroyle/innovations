@@ -8,8 +8,9 @@ import { Showroom } from '../models/showroom';
 export class ShowroomsService {
   private readonly _showroomsFacade = inject(ShowroomsFacade);
 
-  public async generateSlug(name: string): Promise<string> {
-    name = name.toLowerCase()
+  public async generateSlug(name: string, excludeId?: string): Promise<string> {
+    name = name
+      .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
     let showroom: Showroom | undefined;
@@ -21,7 +22,7 @@ export class ShowroomsService {
         this._showroomsFacade.selectShowroomBySlug(`${slug}`)
       );
       i++;
-    } while (showroom);
+    } while (showroom && (!excludeId || showroom.id !== excludeId));
     return slug;
   }
 }

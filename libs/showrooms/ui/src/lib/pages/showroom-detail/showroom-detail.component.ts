@@ -24,7 +24,10 @@ export class ShowroomDetailComponent {
       .pipe(takeUntil(this._destroy$))
       .subscribe(({ showroom }) => {
         if (!showroom) {
-          this._router.navigate(['../'], { relativeTo: this._route });
+          this._router.navigate(['../'], {
+            queryParamsHandling: 'merge',
+            relativeTo: this._route,
+          });
           return;
         }
         this._showroomsFacade.dispatch(

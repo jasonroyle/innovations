@@ -1,0 +1,25 @@
+@if (showroom$ | async; as showroom) {
+<h3>{{ showroom.name }}</h3>
+
+<form [formGroup]="showroomForm" (ngSubmit)="updateShowroom()">
+  <fieldset>
+    <div>
+      <label for="showroom-name">Name</label>
+      <input id="showroom-name" formControlName="name" type="text" />
+    </div>
+    <div>
+      <label for="showroom-manufacturer">Manufacturer</label>
+      <select id="showroom-manufacturer" formControlName="manufacturerId">
+        <option [value]="null">Any</option>
+        @for (manufacturer of manufacturers$ | async; track manufacturer.id) {
+        <option [value]="manufacturer.id">{{ manufacturer.name }}</option>
+        }
+      </select>
+    </div>
+  </fieldset>
+  <div class="actions">
+    <button [disabled]="showroomForm.invalid" type="submit">Save</button>
+    <button (click)="resetForm()" type="button">Reset</button>
+  </div>
+</form>
+}

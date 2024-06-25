@@ -23,13 +23,25 @@ export const searchShowrooms_showroomList = createAction(
   props<{ searchTerm: string }>()
 );
 
+export const selectShowroom_editShowroom = createAction(
+  '[Edit Showroom] Select Showroom',
+  props<{ id?: string }>()
+);
+
 export const selectShowroom_showroomDetail = createAction(
   '[Showroom Detail] Select Showroom',
   props<{ id?: string }>()
 );
 
+export const updateShowroom_editShowroom = createAction(
+  '[Edit Showroom] Update Showroom',
+  props<{ showroom: ShowroomsEntity }>()
+);
+
 export const publicActions = {
   addShowroom_addShowroom,
   searchShowrooms_showroomList,
+  selectShowroom_editShowroom,
   selectShowroom_showroomDetail,
+  updateShowroom_editShowroom,
 };
