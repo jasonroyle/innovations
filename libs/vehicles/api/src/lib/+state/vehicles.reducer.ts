@@ -8,6 +8,7 @@ import { VehiclesEntity } from './vehicles.models';
 export const VEHICLES_FEATURE_KEY = 'vehicles';
 
 export interface VehiclesState extends EntityState<VehiclesEntity> {
+  searchTerm?: string;
   selectedId?: string; // which Vehicles record has been selected
   loaded: boolean; // has the Vehicles list been loaded
   error?: string | null; // last known error (if any)
@@ -60,7 +61,11 @@ const reducer = createReducer(
         },
         state
       )
-  )
+  ),
+  on(VehiclesActions.searchVehicles_vehicleList, (state, { searchTerm }) => ({
+    ...state,
+    searchTerm,
+  }))
 );
 
 export function vehiclesReducer(

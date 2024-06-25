@@ -17,6 +17,7 @@ export class VehiclesFacade {
    */
   loaded$ = this.store.pipe(select(VehiclesSelectors.selectVehiclesLoaded));
   allVehicles$ = this.store.pipe(select(VehiclesSelectors.selectAllVehicles));
+  searchTerm$ = this.store.pipe(select(VehiclesSelectors.selectSearchTerm));
   selectedVehicle$ = this.store.pipe(select(VehiclesSelectors.selectEntity));
   store$ = this.store.pipe();
 

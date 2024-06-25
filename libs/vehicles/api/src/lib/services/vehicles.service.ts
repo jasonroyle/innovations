@@ -2,7 +2,17 @@ import { Injectable } from '@angular/core';
 import { Vehicle } from '../models/vehicle';
 
 function mockVehicleColor(): string {
-  const colors: string[] = ['Red', 'Green', 'Blue'];
+  const colors: string[] = [
+    'Black',
+    'Blue',
+    'Grey',
+    'Green',
+    'Purple',
+    'Red',
+    'Silver',
+    'White',
+    'Yellow',
+  ];
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
@@ -12,19 +22,58 @@ function mockVehicleManufacturerId(): string {
 }
 
 function mockVehicleModel(manufacturerId: string): string {
-  const models: { [key: string]: string[]; } = {
+  const models: { [key: string]: string[] } = {
     // Volkswagen
-    '1': ['Golf', 'Scirocco', 'Arteon'],
+    '1': ['Arteon', 'Golf', 'Polo', 'Scirocco'],
     // BMW
-    '2': ['430i', 'x6'],
+    '2': [
+      '1 Series',
+      '2 Series Active Tourer',
+      '2 Series Coupé',
+      '2 Series Gran Coupé',
+      '3 Series Saloon',
+      '3 Series Touring',
+      '3 Series Saloon M',
+      '3 Series Touring M',
+      '4 Series Coupé',
+      '4 Series Convertable',
+      '4 Series Gran Coupé',
+      'i4 Gran Coupé',
+      'i4 M50 Gran Coupé',
+      'i5',
+      'i5 M60 xDrive',
+      'i5 M60 xDrive Touring',
+      'i5 Touring',
+      'i7',
+      'i7 M70 xDrive',
+      'iX',
+      'iX1',
+      'iX2',
+      'iX3',
+      'iX M60',
+      'M135 xDrive',
+      'M440i xDrive Gran Coupé',
+      'M8',
+      'x6',
+    ],
     // Bugatti
-    '3': ['Veyron'],
+    '3': ['Chiron', 'Tourbillon', 'Veyron'],
     // Volvo
-    '4': ['S40'],
+    '4': ['EC40', 'EX30', 'EX40', 'EX90', 'XC40', 'XC60', 'XC90'],
     // Ford
-    '5': ['Fiesta', 'Focus']
+    '5': [
+      'Explorer',
+      'Fiesta',
+      'Focus',
+      'Kuga',
+      'Mustang',
+      'Mustang Mach-E',
+      'Puma',
+    ],
   };
-  return models[manufacturerId][Math.floor(Math.random() * models[manufacturerId].length)];
+  return models[manufacturerId][
+    Math.floor(Math.random() * models[manufacturerId].length)
+  ];
 }
 
 function mockVehicleRegistrationNumber(): string {
@@ -46,7 +95,7 @@ function mockVehicle(registrationNumber?: string): Vehicle {
     color: mockVehicleColor(),
     manufacturerId,
     model: mockVehicleModel(manufacturerId),
-    registrationNumber
+    registrationNumber,
   };
 }
 

@@ -9,6 +9,12 @@ fieldset {
   border: 0.1rem solid var(--light-grey);
   border-radius: 0.25rem;
 
+  &.no-border {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
   > div {
     display: flex;
     align-items: center;
@@ -22,14 +28,21 @@ fieldset {
     }
 
     > input[type="text"], > select {
-      margin: 0 0 0 1rem;
       padding: 0.5rem;
       border: 0.1rem solid var(--light-grey);
       border-radius: 0.25rem;
       background-color: var(--white);
 
+      &.fill {
+        flex-grow: 1;
+      }
+
       &:focus {
         border-color: var(--black);
+      }
+
+      &:not(:first-child) {
+        margin: 0 0 0 1rem;
       }
     }
   }
