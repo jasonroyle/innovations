@@ -28,6 +28,11 @@ export const selectAllShowrooms = createSelector(
   (state: ShowroomsState) => selectAll(state)
 );
 
+export const selectSearchTerm = createSelector(
+  selectShowroomsState,
+  (state: ShowroomsState) => state.searchTerm
+);
+
 export const selectShowroomsEntities = createSelector(
   selectShowroomsState,
   (state: ShowroomsState) => selectEntities(state)

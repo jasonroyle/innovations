@@ -18,6 +18,11 @@ export const addShowroom_addShowroom = createAction(
   props<{ showroom: ShowroomsEntity }>()
 );
 
+export const searchShowrooms_showroomList = createAction(
+  '[Showroom List] Search Showrooms',
+  props<{ searchTerm: string }>()
+);
+
 export const selectShowroom_showroomDetail = createAction(
   '[Showroom Detail] Select Showroom',
   props<{ id?: string }>()
@@ -25,5 +30,6 @@ export const selectShowroom_showroomDetail = createAction(
 
 export const publicActions = {
   addShowroom_addShowroom,
+  searchShowrooms_showroomList,
   selectShowroom_showroomDetail,
 };

@@ -1,1 +1,13 @@
 @use 'nav-list';
+
+:host {
+  display: block;
+  padding: 0 1rem 1rem 0;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  padding: 1rem 0;
+  background-color: var(--white);
+}

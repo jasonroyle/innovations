@@ -8,6 +8,7 @@ import { ShowroomsEntity } from './showrooms.models';
 export const SHOWROOMS_FEATURE_KEY = 'showrooms';
 
 export interface ShowroomsState extends EntityState<ShowroomsEntity> {
+  searchTerm?: string;
   selectedId?: string; // which Showrooms record has been selected
   loaded: boolean; // has the Showrooms list been loaded
   error?: string | null; // last known error (if any)
@@ -42,6 +43,10 @@ const reducer = createReducer(
   })),
   on(ShowroomsActions.addShowroom_addShowroom, (state, { showroom }) =>
     showroomsAdapter.addOne(showroom, { ...state })
+  ),
+  on(
+    ShowroomsActions.searchShowrooms_showroomList,
+    (state, { searchTerm }) => ({ ...state, searchTerm })
   ),
   on(ShowroomsActions.selectShowroom_showroomDetail, (state, { id }) => ({
     ...state,
