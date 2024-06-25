@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 
-import { AddShowroomComponent } from './components/add-showroom/add-showroom.component';
-import { ShowroomDetailComponent } from './components/showroom-detail/showroom-detail.component';
+import { AddShowroomComponent } from './pages/add-showroom/add-showroom.component';
+import { ShowroomDetailComponent } from './pages/showroom-detail/showroom-detail.component';
 import { ShowroomsComponent } from './pages/showrooms/showrooms.component';
 import { showroomResolver } from './resolvers/showroom.resolver';
 

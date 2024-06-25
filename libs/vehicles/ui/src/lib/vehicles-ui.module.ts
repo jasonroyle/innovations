@@ -7,9 +7,9 @@ import { ShowroomsApiModule } from '@innovations/showrooms-api';
 import { VehiclesApiModule } from '@innovations/vehicles-api';
 
 import { VehiclesUiFacade } from './+state/vehicles-ui.facade';
-import { VehicleDetailComponent } from './components/vehicle-detail/vehicle-detail.component';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import { vehiclesUiRoutes } from './lib.routes';
+import { VehicleDetailComponent } from './pages/vehicle-detail/vehicle-detail.component';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 
 @NgModule({
