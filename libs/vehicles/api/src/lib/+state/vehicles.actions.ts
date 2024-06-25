@@ -13,6 +13,11 @@ export const loadVehiclesFailure = createAction(
   props<{ error: any }>()
 );
 
+export const searchVehicles_vehicleList = createAction(
+  '[Vehicle List] Search Vehicles',
+  props<{ searchTerm: string }>()
+);
+
 export const selectVehicle_vehicleList = createAction(
   '[Vehicle List] Select Vehicle',
   props<{ registrationNumber?: string }>()
@@ -25,5 +30,6 @@ export const linkShowroom_showroomAddVehicle = createAction(
 
 export const publicActions = {
   linkShowroom_showroomAddVehicle,
+  searchVehicles_vehicleList,
   selectVehicle_vehicleList,
 };
