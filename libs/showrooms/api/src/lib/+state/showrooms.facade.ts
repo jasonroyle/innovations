@@ -19,6 +19,7 @@ export class ShowroomsFacade {
   allShowrooms$ = this.store.pipe(
     select(ShowroomsSelectors.selectAllShowrooms)
   );
+  searchTerm$ = this.store.pipe(select(ShowroomsSelectors.selectSearchTerm));
   selectedShowroom$ = this.store.pipe(select(ShowroomsSelectors.selectEntity));
   store$ = this.store.pipe();
 

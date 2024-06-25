@@ -48,3 +48,8 @@ export const selectEntityByRegistrationNumber = (registrationNumber: string) =>
     selectVehiclesEntities,
     (vehicles) => vehicles[registrationNumber]
   );
+
+export const selectSearchTerm = createSelector(
+  selectVehiclesState,
+  (state: VehiclesState) => state.searchTerm
+);

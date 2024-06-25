@@ -1,9 +1,25 @@
+@if (allShowroomDetails$ | async; as allShowroomDetails) {
+<header>
+  <innov-search
+    [data]="allShowroomDetails"
+    [term]="(searchTerm$ | async) ?? undefined"
+    [weight]="searchWeight"
+    (search)="onSearch($event)"
+  ></innov-search>
+</header>
+
 <ul class="nav-list">
-  @for (showroom of showrooms$ | async; track showroom.id) {
-    <li class="nav-item">
-      <a [routerLink]="[showroom.slug]" routerLinkActive="nav-active">
-        {{ showroom.name }}
-      </a>
-    </li>
+  @for (showroomDetail of filteredShowroomDetails$ | async; track
+  showroomDetail.showroom.id) {
+  <li class="nav-item">
+    <a
+      [routerLink]="[showroomDetail.showroom.slug]"
+      queryParamsHandling="merge"
+      routerLinkActive="nav-active"
+    >
+      {{ showroomDetail.showroom.name }}
+    </a>
+  </li>
   }
 </ul>
+}

@@ -8,6 +8,9 @@ import * as ShowroomsSelectors from './showrooms-ui.selectors';
 export class ShowroomsUiFacade {
   private readonly _showroomsFacade = inject(ShowroomsFacade);
 
+  allShowroomDetails$ = this._showroomsFacade.store$.pipe(
+    select(ShowroomsSelectors.selectAllShowroomDetails)
+  );
   allVehicleDetails$ = this._showroomsFacade.store$.pipe(
     select(ShowroomsSelectors.selectAllVehicleDetails)
   );

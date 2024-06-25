@@ -1,13 +1,29 @@
+@if (allVehicleDetails$ | async; as allVehicleDetails) {
+<header>
+  <innov-search
+    [data]="allVehicleDetails"
+    [term]="(searchTerm$ | async) ?? undefined"
+    [weight]="searchWeight"
+    (search)="onSearch($event)"
+  ></innov-search>
+</header>
+
 <ul class="nav-list">
-  @for (detail of details$ | async; track detail.vehicle.registrationNumber) {
-    <li class="nav-item">
-      <a [routerLink]="[detail.vehicle.registrationNumber]" routerLinkActive="nav-active">
-        {{ detail.manufacturer?.name }}
-        {{ detail.vehicle.model }}
-        <small>
-          {{ detail.vehicle.registrationNumber | registrationNumber }}
-        </small>
-      </a>
-    </li>
+  @for (vehicleDetail of filteredVehicleDetails$ | async; track
+  vehicleDetail.vehicle.registrationNumber) {
+  <li class="nav-item">
+    <a
+      [routerLink]="[vehicleDetail.vehicle.registrationNumber]"
+      queryParamsHandling="merge"
+      routerLinkActive="nav-active"
+    >
+      {{ vehicleDetail.manufacturer?.name }}
+      {{ vehicleDetail.vehicle.model }}
+      <small>
+        {{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}
+      </small>
+    </a>
+  </li>
   }
 </ul>
+}
