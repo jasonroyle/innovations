@@ -15,6 +15,7 @@ import { AddShowroomComponent } from './pages/add-showroom/add-showroom.componen
 import { EditShowroomComponent } from './pages/edit-showroom/edit-showroom.component';
 import { ShowroomDetailComponent } from './pages/showroom-detail/showroom-detail.component';
 import { ShowroomsComponent } from './pages/showrooms/showrooms.component';
+import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { ShowroomsComponent } from './pages/showrooms/showrooms.component';
     ShowroomDetailComponent,
     ShowroomListComponent,
     ShowroomsComponent,
+    VehicleListComponent,
   ],
   providers: [ShowroomsUiFacade],
 })

@@ -53,6 +53,7 @@ const reducer = createReducer(
   ),
   on(
     VehiclesActions.linkShowroom_showroomAddVehicle,
+    VehiclesActions.linkShowroom_showroomVehicleList,
     (state, { registrationNumber, showroomId }) =>
       vehiclesAdapter.mapOne(
         {
