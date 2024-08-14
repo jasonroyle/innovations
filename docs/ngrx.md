@@ -16,14 +16,9 @@ Focusing on the Vehicles UI module…
 
 …we can see that vehicles are comprised of manufacturer, showroom, and vehicle data, for example, a Vehicle entity has a manufacturer ID but no direct reference to the name of the manufacturer. To achieve this, selectors from each API module are combined to create a new selector in the UI module.
 
+**_[libs/vehicles/ui/src/lib/+state/vehicles-ui.selectors.ts](../libs/vehicles/ui/src/lib/+state/vehicles-ui.selectors.ts):_**
+
 ```typescript
-import { selectManufacturersEntities } from '@innovations/manufacturers-api';
-import { selectShowroomsEntities } from '@innovations/showrooms-api';
-import { selectAllVehicles } from '@innovations/vehicles-api';
-import { createSelector } from '@ngrx/store';
-
-import { VehicleDetail } from './vehicles-ui.models';
-
 export const selectAllVehicleDetails = createSelector(selectAllVehicles, selectManufacturersEntities, selectShowroomsEntities, (vehicles, manufacturers, showrooms): VehicleDetail[] =>
   vehicles.map((vehicle) => ({
     manufacturer: manufacturers[vehicle.manufacturerId],
