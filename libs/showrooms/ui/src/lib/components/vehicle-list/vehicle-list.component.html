@@ -1,0 +1,43 @@
+@if (showroomDetail$ | async; as showroomDetail) {
+<h4>
+  <div>Vehicles</div>
+  <button
+    (click)="toggleVehicleSelection()"
+    [class.btn-selected]="vehicleSelectionEnabled"
+    class="btn-selectable btn-sm"
+    type="button"
+  >
+    Select
+  </button>
+  <button
+    *ngIf="vehicleSelectionEnabled"
+    [disabled]="!selectedVehicles.length"
+    (click)="removeVehicles()"
+    class="btn-sm"
+    type="button"
+  >
+    Remove
+  </button>
+</h4>
+<ul class="nav-list nav-list-horizontal nav-list-wrap">
+  @for ( vehicleDetail of showroomDetail.vehicleDetails; track
+  vehicleDetail.vehicle.registrationNumber ) {
+  <li class="nav-item">
+    <button
+      [class.btn-selectable]="vehicleSelectionEnabled"
+      [class.btn-selected]="selectedVehicles.includes(vehicleDetail.vehicle)"
+      (click)="selectVehicle(vehicleDetail.vehicle)"
+      class="btn-lite"
+    >
+      @if (!showroomDetail.manufacturer) {
+      {{ vehicleDetail.manufacturer?.name }}
+      }
+      {{ vehicleDetail.vehicle.model }}
+      <small>
+        {{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}
+      </small>
+    </button>
+  </li>
+  }
+</ul>
+}

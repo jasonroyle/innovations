@@ -17,6 +17,9 @@ export class ShowroomsUiFacade {
   selectedShowroomDetail$ = this._showroomsFacade.store$.pipe(
     select(ShowroomsSelectors.selectSelectedShowroomDetail)
   );
+  selectedShowroomVehicleDetails$ = this._showroomsFacade.store$.pipe(
+    select(ShowroomsSelectors.selectSelectedShowroomVehicleDetails)
+  );
   vehicleDetailsWithoutShowroom$ = this._showroomsFacade.store$.pipe(
     select(ShowroomsSelectors.selectVehicleDetailsWithoutShowroom)
   );

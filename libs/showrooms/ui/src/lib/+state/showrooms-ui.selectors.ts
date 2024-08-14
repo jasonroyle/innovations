@@ -61,6 +61,11 @@ export const selectSelectedShowroomDetail = createSelector(
       : undefined
 );
 
+export const selectSelectedShowroomVehicleDetails = createSelector(
+  selectSelectedShowroomDetail,
+  (showroomDetail) => showroomDetail?.vehicleDetails
+);
+
 export const selectVehicleDetailsWithoutShowroom = createSelector(
   selectAllVehicleDetails,
   (vehicles): VehicleDetail[] => vehicles.filter((vehicle) => !vehicle.showroom)

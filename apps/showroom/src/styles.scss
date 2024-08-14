@@ -3,6 +3,7 @@
 
 :root {
   --black: black;
+  --blue: #06f;
   --light-grey: #f0f0f0;
   --grey: #ccc;
   --dark-grey: #666;
@@ -12,6 +13,10 @@
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
+}
+
+select {
+  appearance: none;
 }
 
 small {

@@ -54,6 +54,13 @@ export class EditShowroomComponent implements OnDestroy {
       });
   }
 
+  public cancel(): void {
+    this._router.navigate(['../'], {
+      queryParamsHandling: 'merge',
+      relativeTo: this._route,
+    });
+  }
+
   public ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.complete();

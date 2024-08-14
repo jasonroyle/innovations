@@ -28,8 +28,14 @@ export const linkShowroom_showroomAddVehicle = createAction(
   props<{ registrationNumber: string; showroomId?: string }>()
 );
 
+export const linkShowroom_showroomVehicleList = createAction(
+  '[Showroom Vehicle List] Link Showroom',
+  props<{ registrationNumber: string; showroomId?: string }>()
+);
+
 export const publicActions = {
   linkShowroom_showroomAddVehicle,
+  linkShowroom_showroomVehicleList,
   searchVehicles_vehicleList,
   selectVehicle_vehicleList,
 };

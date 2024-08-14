@@ -1,9 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShowroomsFacade } from '@innovations/showrooms-api';
-import { Subject, takeUntil } from 'rxjs';
+import { VehiclesEntity } from '@innovations/vehicles-api';
 
 import { ShowroomsUiFacade } from '../../+state/showrooms-ui.facade';
+import { VehicleListComponent } from '../../components/vehicle-list/vehicle-list.component';
 
 @Component({
   selector: 'innov-showroom-detail',
@@ -11,35 +13,35 @@ import { ShowroomsUiFacade } from '../../+state/showrooms-ui.facade';
   styleUrl: './showroom-detail.component.scss',
 })
 export class ShowroomDetailComponent {
-  private readonly _destroy$ = new Subject<void>();
   private readonly _route = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _showroomsFacade = inject(ShowroomsFacade);
   private readonly _showroomsUiFacade = inject(ShowroomsUiFacade);
+  @ViewChild(VehicleListComponent)
+  private _vehicleListComponent?: VehicleListComponent;
   public readonly showroomDetail$ =
     this._showroomsUiFacade.selectedShowroomDetail$;
 
   constructor() {
-    this._route.data
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(({ showroom }) => {
-        if (!showroom) {
-          this._router.navigate(['../'], {
-            queryParamsHandling: 'merge',
-            relativeTo: this._route,
-          });
-          return;
-        }
-        this._showroomsFacade.dispatch(
-          this._showroomsFacade.actions.selectShowroom_showroomDetail({
-            id: showroom.id,
-          })
-        );
-      });
+    this._route.data.pipe(takeUntilDestroyed()).subscribe(({ showroom }) => {
+      if (!showroom) {
+        this._router.navigate(['../'], {
+          queryParamsHandling: 'merge',
+          relativeTo: this._route,
+        });
+        return;
+      }
+      if (this._vehicleListComponent)
+        this._vehicleListComponent.vehicleSelectionEnabled = false;
+      this._showroomsFacade.dispatch(
+        this._showroomsFacade.actions.selectShowroom_showroomDetail({
+          id: showroom.id,
+        })
+      );
+    });
   }
 
-  public ngOnDestroy(): void {
-    this._destroy$.next();
-    this._destroy$.complete();
+  public onVehicleSelect(vehicle: VehiclesEntity): void {
+    this._router.navigate(['/vehicles', vehicle.registrationNumber]);
   }
 }
