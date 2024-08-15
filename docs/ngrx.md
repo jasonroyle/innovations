@@ -1,9 +1,9 @@
 # NgRx
 
-## Table of Content
+## Table of Contents
 
 - [Why NgRx](#why-ngrx)
-  - [NgRx ♥ RxJS](#ngrx-♥-rxjs)
+  - [NgRx ♥ RxJS](#ngrx--rxjs)
 - [NgRx Store](#ngrx-store)
   - [NgRx State Management Lifecycle](#ngrx-state-management-lifecycle)
   - [Entity Adapter](#entity-adapter)
