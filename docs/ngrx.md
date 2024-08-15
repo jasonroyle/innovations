@@ -6,8 +6,10 @@
 
 - [Why NgRx?](#why-ngrx)
   - [NgRx ♥ RxJS](#ngrx--rxjs)
+  - [Debugging](#debugging)
 - [NgRx Store](#ngrx-store)
   - [NgRx State Management Lifecycle](#ngrx-state-management-lifecycle)
+  - [Store Types](#store-types)
   - [Entity Adapter](#entity-adapter)
 - [Store Combination](#store-combination)
   - [Module Architecture](#module-architecture)
@@ -20,14 +22,20 @@ As with all aspects in software development, as applications increase in feature
 
 RxJS has been a fundamental technology to many aspects of Angular since its conception. NgRx utilises RxJS to deliver a uni-directional and immutable state data stream. This makes adoption relatively easy for Angular developers, with the main barriers to entry being the learning curve of the general concept and patterns that data stores introduce.
 
+### Debugging
+
+NgRx is compatible with the popular Redux DevTools Chrome extension.
+
+![Redux DevTools](./assets/redux-devtools.png)
+
 ## NgRx Store
 
 There are 4 main components of an NgRx store:
 
-1. **Actions**: Actions are the only way in to a store, they can carry properties and are dispatched from components to trigger effects and updates to the state.
-2. **Effects**: Effects are functions that trigger as a side-effect of an action being dispatched. The most common use-case is to call an asynchronous function, such as fetching data from an API, once the API call completes, the effect would result in either a success or failure action being called to update the state accordingly.
+1. **Actions**: Actions are the only way in to a store, they can carry properties and are dispatched from components to trigger effects and state updates.
+2. **Effects**: Effects are functions that trigger as a side-effect of an action being dispatched. The most common use-case is to call an asynchronous function, such as fetching data from an API. Once the API call completes, the effect would result in either a success or failure action being called to update the state accordingly.
 3. **Reducer**: The reducer is the only point at which the state can be modified. Functions are created to listen for a specific action and return the new state.
-4. **Selectors**: Selectors are used to get data out of the store. They are memoised functions that can return specific properties of a state and manipulate or format data.
+4. **Selectors**: Selectors are used to get data out of the store. They are memoised functions that can return specific properties of a state and manipulate or format data on-the-fly.
 
 #### Facade
 
@@ -37,7 +45,14 @@ A facade can be added to provide convenient access to actions, selectors, the di
 
 ![State Management Lifecycle](./assets/state-management-lifecycle.png)
 
+### Store Types
+
+- **Root Store**:
+- **Feature Store**:
+
 ### Entity Adapter
+
+The entity adapter has become common place and even the standard for the Nx schematics when generating stores.
 
 ## Store Combination
 
