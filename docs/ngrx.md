@@ -16,11 +16,11 @@
 
 ## Why NgRx?
 
-As with all aspects in software development, as applications increase in features more patterns and concepts are realised in order to maintain stability, limit complexity and maximise reuse. Historically, consuming data has been a relatively straight-forward process of HTTP requests and displaying response data, but as front-end technologies have evolved and consumer devices have become more capable, we are doing more and more with data on the client-side and state management has become a necessity for most modern applications, especially single page applications or progressive web apps where there is arguably less reliance on server-side processes.
+As with all aspects in software development, as applications increase in features more concepts and patterns are realised in order to maintain stability, limit complexity and maximise reuse. Historically, consuming data has been a relatively straight-forward process of HTTP requests and displaying response data, but as front-end technologies have evolved and consumer devices have become more capable, we are doing more and more with data on the client-side and state management has become a necessity for most modern applications, especially single page applications or progressive web apps where there is arguably less reliance on server-side processes.
 
 ### NgRx ♥ RxJS
 
-RxJS has been a fundamental technology to many aspects of Angular since its conception. NgRx utilises RxJS to deliver a uni-directional and immutable state data stream. This makes adoption relatively easy for Angular developers, with the main barriers to entry being the learning curve of the general concept and patterns that data stores introduce.
+RxJS has been a fundamental technology to many aspects of Angular since its conception. NgRx utilises RxJS to deliver a uni-directional and immutable state data stream. This makes adoption relatively easy for Angular developers, with the main barriers to entry being the learning curve of the general concepts and patterns that data stores introduce.
 
 ### Debugging
 
