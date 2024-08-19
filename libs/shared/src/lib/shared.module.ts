@@ -5,8 +5,9 @@ import { RouterModule } from '@angular/router';
 
 import { MasterDetailComponent } from './components/master-detail/master-detail.component';
 import { SearchComponent } from './components/search/search.component';
+import { SiPrefixPipe } from './pipes/si-prefix.pipe';
 
-const exports = [MasterDetailComponent, SearchComponent];
+const exports = [MasterDetailComponent, SearchComponent, SiPrefixPipe];
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
