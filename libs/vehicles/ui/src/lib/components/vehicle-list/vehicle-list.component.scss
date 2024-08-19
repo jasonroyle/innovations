@@ -11,3 +11,16 @@ header {
   padding: 1rem 0;
   background-color: var(--white);
 }
+
+.vehicle-link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+
+  small {
+    display: flex;
+    gap: 0.5rem;
+  }
+}

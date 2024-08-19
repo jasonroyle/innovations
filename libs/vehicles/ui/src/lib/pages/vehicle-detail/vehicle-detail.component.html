@@ -1,14 +1,22 @@
 @if (vehicleDetail$ | async; as vehicleDetail) {
-  <h3>{{ vehicleDetail.manufacturer?.name }} {{ vehicleDetail.vehicle.model }}</h3>
+<h3>
+  {{ vehicleDetail.manufacturer?.name }} {{ vehicleDetail.vehicle.model }}
+</h3>
 
-  <dl>
-    <dt>Registration Number</dt>
-    <dd>{{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}</dd>
-    <dt>Colour</dt>
-    <dd>{{ vehicleDetail.vehicle.color }}</dd>
-    @if (vehicleDetail.showroom; as showroom) {
-      <dt>Showroom</dt>
-      <dd><a [routerLink]="['/showrooms', showroom.slug]">{{ showroom.name }}</a></dd>
-    }
-  </dl>
+<dl>
+  <dt>Price</dt>
+  <dd>
+    {{ vehicleDetail.vehicle.price | currency : 'GBP' }}
+  </dd>
+  <dt>Colour</dt>
+  <dd>{{ vehicleDetail.vehicle.color }}</dd>
+  @if (vehicleDetail.showroom; as showroom) {
+  <dt>Showroom</dt>
+  <dd>
+    <a [routerLink]="['/showrooms', showroom.slug]">{{ showroom.name }}</a>
+  </dd>
+  }
+  <dt>Registration Number</dt>
+  <dd>{{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}</dd>
+</dl>
 }

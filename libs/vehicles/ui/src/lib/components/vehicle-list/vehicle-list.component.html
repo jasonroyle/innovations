@@ -17,11 +17,26 @@
       queryParamsHandling="merge"
       routerLinkActive="nav-active"
     >
-      {{ vehicleDetail.manufacturer?.name }}
-      {{ vehicleDetail.vehicle.model }}
-      <small>
-        {{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}
-      </small>
+      <span class="vehicle-link">
+        <span>
+          {{ vehicleDetail.manufacturer?.name }}
+          {{ vehicleDetail.vehicle.model }}
+        </span>
+        <small>
+          <span>
+            {{
+              vehicleDetail.vehicle.price
+                | siPrefix : 'symbol' : '1.0-0' : { currencyCode: 'GBP' }
+            }}
+          </span>
+          <span>
+            {{ vehicleDetail.vehicle.color }}
+          </span>
+          <span>
+            {{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}
+          </span>
+        </small>
+      </span>
     </a>
   </li>
   }
