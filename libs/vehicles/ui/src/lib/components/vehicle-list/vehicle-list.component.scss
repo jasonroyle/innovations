@@ -1,4 +1,18 @@
+@use 'sass:color';
+@use 'sass:map';
 @use 'nav-list';
+
+$vehicle-colors: (
+  'black': black,
+  'blue': blue,
+  'grey': grey,
+  'green': green,
+  'purple': purple,
+  'red': red,
+  'silver': silver,
+  'white': white,
+  'yellow': yellow
+);
 
 :host {
   display: block;
@@ -10,6 +24,13 @@ header {
   top: 0;
   padding: 1rem 0;
   background-color: var(--white);
+}
+
+@each $name, $color in $vehicle-colors {
+  a.vehicle-color-#{$name} {
+    background: linear-gradient(2deg, $color, rgba($color, 0.1) 6% 8%, transparent 10%);
+    box-shadow: inset 0 0 6px rgba($color, 0.1);
+  }
 }
 
 .vehicle-link {

@@ -14,6 +14,7 @@
   <li class="nav-item">
     <a
       [routerLink]="[vehicleDetail.vehicle.registrationNumber]"
+      class="vehicle-color-{{ vehicleDetail.vehicle.color | lowercase }}"
       queryParamsHandling="merge"
       routerLinkActive="nav-active"
     >
@@ -28,9 +29,6 @@
               vehicleDetail.vehicle.price
                 | siPrefix : 'symbol' : '1.0-0' : { currencyCode: 'GBP' }
             }}
-          </span>
-          <span>
-            {{ vehicleDetail.vehicle.color }}
           </span>
           <span>
             {{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}
