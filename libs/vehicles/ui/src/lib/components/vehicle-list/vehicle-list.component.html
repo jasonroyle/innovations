@@ -33,6 +33,9 @@
           <span>
             {{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}
           </span>
+          <span
+            class="vehicle-color-{{ vehicleDetail.vehicle.color | lowercase }}"
+          ></span>
         </small>
       </span>
     </a>

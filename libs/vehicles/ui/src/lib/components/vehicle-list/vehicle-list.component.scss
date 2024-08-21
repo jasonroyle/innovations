@@ -29,7 +29,6 @@ header {
 @each $name, $color in $vehicle-colors {
   a.vehicle-color-#{$name} {
     background: linear-gradient(2deg, $color, rgba($color, 0.1) 6% 8%, transparent 10%);
-    box-shadow: inset 0 0 6px rgba($color, 0.1);
   }
 }
 
@@ -42,6 +41,17 @@ header {
 
   small {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
+
+    @each $name, $color in $vehicle-colors {
+      .vehicle-color-#{$name} {
+        min-width: 0.6rem;
+        min-height: 0.6rem;
+        border: 1px solid var(--dark-grey);
+        border-radius: 50%;
+        background-color: $color;
+      }
+    }
   }
 }
