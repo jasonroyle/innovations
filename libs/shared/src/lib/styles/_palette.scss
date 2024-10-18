@@ -1,0 +1,40 @@
+@use 'sass:map';
+
+$tones: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900;
+
+@function valid-palette($name, $palette, $contrast: false) {
+  @each $tone in $tones {
+    @if not map.has-key($palette, $tone) {
+      @error 'Palette \'#{$name}\' is missing tone \'#{$tone}\'.';
+    }
+    @if not $contrast and not map.has-key($palette, 'contrast') {
+      @error 'Palette \'#{name}\' is missing the contrast palette.';
+    }
+  }
+  @if not $contrast {
+    @return valid-palette('#{$name} contrast', map.get($palette, 'contrast'), true);
+  }
+  @return true;
+}
+
+@function set-palette($palettes, $name, $palette) {
+  @if not valid-palette($name, $palette) {
+    @error 'Palette \'#{$name}\' is invalid.'
+  }
+  @return map.set($palettes, $name, $palette);
+}
+
+@function get-palette($palettes, $name) {
+  @return map.get($palettes, $name);
+}
+
+@function get-color($palettes, $palette-name, $weight: 500) {
+  $palette: get-palette($palettes, $palette-name);
+  @return map.get($palette, $weight);
+}
+
+@function get-contrast($palettes, $palette-name, $weight: 500) {
+  $palette: get-palette($palettes, $palette-name);
+  $contrast-palette: map.get($palette, 'contrast');
+  @return map.get($contrast-palette, $weight);
+}

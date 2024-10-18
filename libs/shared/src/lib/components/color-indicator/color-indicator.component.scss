@@ -1,0 +1,24 @@
+@use 'sass:color';
+@use 'sass:map';
+@use 'palette';
+@use 'palettes';
+
+:host {
+  display: inline-block;
+  min-width: 0.6em;
+  min-height: 0.6em;
+  border: 1px solid var(--dark-grey);
+  border-radius: 50%;
+  transition: background-color 300ms;
+
+  @each $name, $palette in palettes.$palettes {
+    @each $tone in palette.$tones {
+      &.palette-#{$name} {
+        background-color: palette.get-color(palettes.$palettes, $name);
+        &.tone-#{$tone} {
+          background-color: palette.get-color(palettes.$palettes, $name, $tone);
+        }
+      }
+    }
+  }
+}
