@@ -6,10 +6,12 @@ import { RouterModule } from '@angular/router';
 import { ColorIndicatorComponent } from './components/color-indicator/color-indicator.component';
 import { MasterDetailComponent } from './components/master-detail/master-detail.component';
 import { SearchComponent } from './components/search/search.component';
+import { HoverDirective } from './directives/hover.directive';
 import { SiPrefixPipe } from './pipes/si-prefix.pipe';
 
 const exports = [
   ColorIndicatorComponent,
+  HoverDirective,
   MasterDetailComponent,
   SearchComponent,
   SiPrefixPipe,
