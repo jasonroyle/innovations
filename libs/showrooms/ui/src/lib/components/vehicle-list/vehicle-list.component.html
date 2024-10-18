@@ -26,16 +26,16 @@
   track vehicle.key) {
   <li class="nav-item">
     <button
+      #vehicleButton="innovHover"
       [class.btn-selectable]="vehicleSelectionEnabled"
       [class.btn-selected]="vehicle.value.selected"
       (click)="selectVehicle(vehicle.value)"
-      (mouseenter)="hoverVehicle(vehicle.value, true)"
-      (mouseleave)="hoverVehicle(vehicle.value, false)"
       class="btn-lite"
+      innovHover
     >
       <innov-vehicle-label
         [isActive]="
-          vehicle.value.hovered ||
+          vehicleButton.isHovered ||
           (vehicleSelectionEnabled && vehicle.value.selected)
         "
         [manufacturer]="

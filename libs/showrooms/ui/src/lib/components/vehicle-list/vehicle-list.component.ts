@@ -6,7 +6,6 @@ import { ShowroomsUiFacade } from '../../+state/showrooms-ui.facade';
 import { VehicleDetail } from '../../+state/showrooms-ui.models';
 
 interface Vehicle {
-  hovered: boolean;
   selected: boolean;
   vehicleDetail: VehicleDetail;
 }
@@ -79,12 +78,6 @@ export class VehicleListComponent {
         ...vehicle,
         ...patch,
       },
-    });
-  }
-
-  public async hoverVehicle(vehicle: Vehicle, hovered: boolean): Promise<void> {
-    this._patchVehicle(vehicle.vehicleDetail.vehicle.registrationNumber, {
-      hovered,
     });
   }
 

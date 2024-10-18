@@ -13,14 +13,18 @@
   vehicleDetail.vehicle.registrationNumber) {
   <li class="nav-item">
     <a
+      #vehicleLink="innovHover"
       [routerLink]="[vehicleDetail.vehicle.registrationNumber]"
       (isActiveChange)="onIsActiveChange(vehicleDetail, $event)"
       class="vehicle-color-{{ vehicleDetail.vehicle.color | lowercase }}"
+      innovHover
       queryParamsHandling="merge"
       routerLinkActive="nav-active"
     >
       <innov-vehicle-label
-        [isActive]="activeVehicleDetail === vehicleDetail"
+        [isActive]="
+          vehicleLink.isHovered || activeVehicleDetail === vehicleDetail
+        "
         [manufacturer]="vehicleDetail.manufacturer?.name"
         [vehicle]="vehicleDetail.vehicle"
       ></innov-vehicle-label>
