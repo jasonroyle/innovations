@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SharedModule } from '@innovations/shared';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
@@ -8,12 +9,14 @@ import { VehiclesFacade } from './+state/vehicles.facade';
 import * as fromVehicles from './+state/vehicles.reducer';
 import { RegistrationNumberPipe } from './pipes/registration-number/registration-number.pipe';
 import { VehiclesService } from './services/vehicles.service';
+import { VehicleLabelComponent } from './components/vehicle-label/vehicle-label.component';
 
-const exports = [RegistrationNumberPipe];
+const exports = [RegistrationNumberPipe, VehicleLabelComponent];
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     StoreModule.forFeature(
       fromVehicles.VEHICLES_FEATURE_KEY,
       fromVehicles.vehiclesReducer,

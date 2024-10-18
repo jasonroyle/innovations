@@ -15,6 +15,7 @@ export class VehicleListComponent {
   private readonly _searchResult$ = new BehaviorSubject<VehicleDetail[]>([]);
   private readonly _vehiclesFacade = inject(VehiclesFacade);
   private readonly _vehiclesUiFacade = inject(VehiclesUiFacade);
+  public activeVehicleDetail: VehicleDetail | null = null;
   public readonly allVehicleDetails$ =
     this._vehiclesUiFacade.allVehicleDetails$;
   public readonly filteredVehicleDetails$ = this._searchResult$.asObservable();
@@ -32,6 +33,15 @@ export class VehicleListComponent {
       registrationNumber: 4,
     },
   };
+
+  public onIsActiveChange(
+    vehicleDetail: VehicleDetail,
+    isActive: boolean
+  ): void {
+    if (isActive) this.activeVehicleDetail = vehicleDetail;
+    else if (this.activeVehicleDetail === vehicleDetail)
+      this.activeVehicleDetail = null;
+  }
 
   public onSearch(search: SearchEvent<VehicleDetail>): void {
     this._searchResult$.next(search.result);

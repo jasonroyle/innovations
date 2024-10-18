@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use 'palette';
+
+@function set-theme($themes, $name, $palettes: ()) {
+  $theme-palettes: ();
+  @each $palette-name, $palette in $palettes {
+    $theme-palettes: palette.set-palette($theme-palettes, $palette-name, $palette);
+  }
+  @return map.set($themes, $name, (palettes: $theme-palettes));
+}
+
+@function get-theme($themes, $name) {
+  @return map.get($themes, $name);
+}

@@ -1,4 +1,8 @@
+@use 'sass:color';
+@use 'sass:map';
 @use 'nav-list';
+@use 'palette';
+@use 'palettes';
 
 :host {
   display: block;
@@ -10,4 +14,10 @@ header {
   top: 0;
   padding: 1rem 0;
   background-color: var(--white);
+}
+
+@each $name, $palette in palettes.$palettes {
+  a.vehicle-color-#{$name} {
+    background: linear-gradient(2deg, palette.get-color(palettes.$palettes, $name), palette.get-color(palettes.$palettes, $name, 50) 6% 8%, transparent 10%);
+  }
 }

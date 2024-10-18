@@ -2,9 +2,9 @@ import { Component, ViewChild, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShowroomsFacade } from '@innovations/showrooms-api';
-import { VehiclesEntity } from '@innovations/vehicles-api';
 
 import { ShowroomsUiFacade } from '../../+state/showrooms-ui.facade';
+import { VehicleDetail } from '../../+state/showrooms-ui.models';
 import { VehicleListComponent } from '../../components/vehicle-list/vehicle-list.component';
 
 @Component({
@@ -41,7 +41,9 @@ export class ShowroomDetailComponent {
     });
   }
 
-  public onVehicleSelect(vehicle: VehiclesEntity): void {
-    this._router.navigate(['/vehicles', vehicle.registrationNumber]);
+  public onVehicleSelect({
+    vehicle: { registrationNumber },
+  }: VehicleDetail): void {
+    this._router.navigate(['/vehicles', registrationNumber]);
   }
 }
