@@ -1,18 +1,8 @@
 @use 'sass:color';
 @use 'sass:map';
 @use 'nav-list';
-
-$vehicle-colors: (
-  'black': black,
-  'blue': blue,
-  'grey': grey,
-  'green': green,
-  'purple': purple,
-  'red': red,
-  'silver': silver,
-  'white': white,
-  'yellow': yellow
-);
+@use 'palette';
+@use 'palettes';
 
 :host {
   display: block;
@@ -26,32 +16,8 @@ header {
   background-color: var(--white);
 }
 
-@each $name, $color in $vehicle-colors {
+@each $name, $palette in palettes.$palettes {
   a.vehicle-color-#{$name} {
-    background: linear-gradient(2deg, $color, rgba($color, 0.1) 6% 8%, transparent 10%);
-  }
-}
-
-.vehicle-link {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.25rem 1rem;
-
-  small {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    @each $name, $color in $vehicle-colors {
-      .vehicle-color-#{$name} {
-        min-width: 0.6rem;
-        min-height: 0.6rem;
-        border: 1px solid var(--dark-grey);
-        border-radius: 50%;
-        background-color: $color;
-      }
-    }
+    background: linear-gradient(2deg, palette.get-color(palettes.$palettes, $name), palette.get-color(palettes.$palettes, $name, 50) 6% 8%, transparent 10%);
   }
 }

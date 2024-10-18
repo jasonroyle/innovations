@@ -14,30 +14,16 @@
   <li class="nav-item">
     <a
       [routerLink]="[vehicleDetail.vehicle.registrationNumber]"
+      (isActiveChange)="onIsActiveChange(vehicleDetail, $event)"
       class="vehicle-color-{{ vehicleDetail.vehicle.color | lowercase }}"
       queryParamsHandling="merge"
       routerLinkActive="nav-active"
     >
-      <span class="vehicle-link">
-        <span>
-          {{ vehicleDetail.manufacturer?.name }}
-          {{ vehicleDetail.vehicle.model }}
-        </span>
-        <small>
-          <span>
-            {{
-              vehicleDetail.vehicle.price
-                | siPrefix : 'symbol' : '1.0-0' : { currencyCode: 'GBP' }
-            }}
-          </span>
-          <span>
-            {{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}
-          </span>
-          <span
-            class="vehicle-color-{{ vehicleDetail.vehicle.color | lowercase }}"
-          ></span>
-        </small>
-      </span>
+      <innov-vehicle-label
+        [isActive]="activeVehicleDetail === vehicleDetail"
+        [manufacturer]="vehicleDetail.manufacturer?.name"
+        [vehicle]="vehicleDetail.vehicle"
+      ></innov-vehicle-label>
     </a>
   </li>
   }

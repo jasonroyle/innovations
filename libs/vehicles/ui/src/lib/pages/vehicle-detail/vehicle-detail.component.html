@@ -9,7 +9,12 @@
     {{ vehicleDetail.vehicle.price | currency : 'GBP' }}
   </dd>
   <dt>Colour</dt>
-  <dd>{{ vehicleDetail.vehicle.color }}</dd>
+  <dd>
+    <innov-color-indicator
+      [palette]="vehicleDetail.vehicle.color"
+    ></innov-color-indicator>
+    {{ vehicleDetail.vehicle.color }}
+  </dd>
   @if (vehicleDetail.showroom; as showroom) {
   <dt>Showroom</dt>
   <dd>

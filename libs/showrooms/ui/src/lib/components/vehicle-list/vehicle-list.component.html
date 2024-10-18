@@ -9,6 +9,7 @@
   >
     Select
   </button>
+  @if (selectedVehicles$ | async; as selectedVehicles) {
   <button
     *ngIf="vehicleSelectionEnabled"
     [disabled]="!selectedVehicles.length"
@@ -18,26 +19,34 @@
   >
     Remove
   </button>
+  }
 </h4>
 <ul class="nav-list nav-list-horizontal nav-list-wrap">
-  @for ( vehicleDetail of showroomDetail.vehicleDetails; track
-  vehicleDetail.vehicle.registrationNumber ) {
+  @if (vehicles$ | async; as vehicles) { @for (vehicle of vehicles | keyvalue;
+  track vehicle.key) {
   <li class="nav-item">
     <button
       [class.btn-selectable]="vehicleSelectionEnabled"
-      [class.btn-selected]="selectedVehicles.includes(vehicleDetail.vehicle)"
-      (click)="selectVehicle(vehicleDetail.vehicle)"
+      [class.btn-selected]="vehicle.value.selected"
+      (click)="selectVehicle(vehicle.value)"
+      (mouseenter)="hoverVehicle(vehicle.value, true)"
+      (mouseleave)="hoverVehicle(vehicle.value, false)"
       class="btn-lite"
     >
-      @if (!showroomDetail.manufacturer) {
-      {{ vehicleDetail.manufacturer?.name }}
-      }
-      {{ vehicleDetail.vehicle.model }}
-      <small>
-        {{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}
-      </small>
+      <innov-vehicle-label
+        [isActive]="
+          vehicle.value.hovered ||
+          (vehicleSelectionEnabled && vehicle.value.selected)
+        "
+        [manufacturer]="
+          showroomDetail.manufacturer
+            ? undefined
+            : vehicle.value.vehicleDetail.manufacturer?.name
+        "
+        [vehicle]="vehicle.value.vehicleDetail.vehicle"
+      ></innov-vehicle-label>
     </button>
   </li>
-  }
+  } }
 </ul>
 }

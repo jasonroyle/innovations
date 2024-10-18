@@ -1,0 +1,20 @@
+@if (vehicle) {
+<span>
+  {{ manufacturer }}
+  {{ vehicle.model }}
+</span>
+<small>
+  <span>
+    {{
+      vehicle.price | siPrefix : 'symbol' : '1.0-0' : { currencyCode: 'GBP' }
+    }}
+  </span>
+  <span>
+    {{ vehicle.registrationNumber | registrationNumber }}
+  </span>
+  <innov-color-indicator
+    [palette]="vehicle.color"
+    [tone]="isActive ? 500 : 100"
+  ></innov-color-indicator>
+</small>
+}

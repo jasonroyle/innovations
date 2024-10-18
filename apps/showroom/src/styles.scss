@@ -1,4 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'sass:map';
+@use 'theme';
+@use 'palettes';
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
@@ -9,6 +12,8 @@
   --dark-grey: #666;
   --white: white;
 }
+
+$themes: theme.set-theme((), 'showroom', palettes.$palettes);
 
 body {
   margin: 0;
