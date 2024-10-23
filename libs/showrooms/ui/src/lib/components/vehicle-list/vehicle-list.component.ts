@@ -28,7 +28,7 @@ export class VehicleListComponent {
           (showroomDetail?.vehicleDetails ?? []).reduce<Vehicles>(
             (vehicles, vehicleDetail) => ({
               ...vehicles,
-              [vehicleDetail.vehicle.registrationNumber]: {
+              [vehicleDetail.vehicle.registrationMark]: {
                 hovered: false,
                 selected: false,
                 vehicleDetail,
@@ -45,8 +45,8 @@ export class VehicleListComponent {
   public readonly selectedVehicles$ = this.vehicles$.pipe(
     map((vehicles) =>
       Object.keys(vehicles)
-        .filter((registrationNumber) => vehicles[registrationNumber].selected)
-        .map((registrationNumber) => vehicles[registrationNumber].vehicleDetail)
+        .filter((registrationMark) => vehicles[registrationMark].selected)
+        .map((registrationMark) => vehicles[registrationMark].vehicleDetail)
     )
   );
 
@@ -59,22 +59,22 @@ export class VehicleListComponent {
   }
 
   private async _getVehicle(
-    registrationNumber: string
+    registrationMark: string
   ): Promise<[Vehicle, Vehicles]> {
     const vehicles = await this.vehicles;
-    const vehicle = vehicles[registrationNumber];
+    const vehicle = vehicles[registrationMark];
     if (!vehicle) throw 'Invalid vehicle registration number';
     return [vehicle, vehicles];
   }
 
   private async _patchVehicle(
-    registrationNumber: string,
+    registrationMark: string,
     patch: Partial<Vehicle>
   ): Promise<void> {
-    const [vehicle, vehicles] = await this._getVehicle(registrationNumber);
+    const [vehicle, vehicles] = await this._getVehicle(registrationMark);
     this._vehicles$.next({
       ...vehicles,
-      [registrationNumber]: {
+      [registrationMark]: {
         ...vehicle,
         ...patch,
       },
@@ -83,10 +83,10 @@ export class VehicleListComponent {
 
   public async removeVehicles(): Promise<void> {
     const selectedVehicles = await this.selectedVehicles;
-    selectedVehicles.forEach(({ vehicle: { registrationNumber } }) =>
+    selectedVehicles.forEach(({ vehicle: { registrationMark } }) =>
       this._vehiclesFacade.dispatch(
         this._vehiclesFacade.actions.linkShowroom_showroomVehicleList({
-          registrationNumber,
+          registrationMark,
         })
       )
     );
@@ -98,7 +98,7 @@ export class VehicleListComponent {
     selected?: boolean
   ): Promise<void> {
     if (this.vehicleSelectionEnabled) {
-      this._patchVehicle(vehicle.vehicleDetail.vehicle.registrationNumber, {
+      this._patchVehicle(vehicle.vehicleDetail.vehicle.registrationMark, {
         selected: selected ?? !vehicle.selected,
       });
     } else {

@@ -10,11 +10,11 @@
 
 <ul class="nav-list">
   @for (vehicleDetail of filteredVehicleDetails$ | async; track
-  vehicleDetail.vehicle.registrationNumber) {
+  vehicleDetail.vehicle.registrationMark) {
   <li class="nav-item">
     <a
       #vehicleLink="innovHover"
-      [routerLink]="[vehicleDetail.vehicle.registrationNumber]"
+      [routerLink]="[vehicleDetail.vehicle.registrationMark]"
       (isActiveChange)="onIsActiveChange(vehicleDetail, $event)"
       class="vehicle-color-{{ vehicleDetail.vehicle.color | lowercase }}"
       innovHover

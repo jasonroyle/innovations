@@ -30,7 +30,7 @@ export class VehicleListComponent {
     vehicle: {
       color: 1,
       model: 2,
-      registrationNumber: 4,
+      registrationMark: 4,
     },
   };
 

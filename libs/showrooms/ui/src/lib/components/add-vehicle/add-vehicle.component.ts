@@ -46,7 +46,7 @@ export class AddVehicleComponent {
     if (!value.vehicleId) return;
     this._vehiclesFacade.dispatch(
       this._vehiclesFacade.actions.linkShowroom_showroomAddVehicle({
-        registrationNumber: value.vehicleId,
+        registrationMark: value.vehicleId,
         showroomId: this.showroom?.id,
       })
     );
