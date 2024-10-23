@@ -20,17 +20,17 @@ export const searchVehicles_vehicleList = createAction(
 
 export const selectVehicle_vehicleList = createAction(
   '[Vehicle List] Select Vehicle',
-  props<{ registrationNumber?: string }>()
+  props<{ registrationMark?: string }>()
 );
 
 export const linkShowroom_showroomAddVehicle = createAction(
   '[Showroom Add Vehicle] Link Showroom',
-  props<{ registrationNumber: string; showroomId?: string }>()
+  props<{ registrationMark: string; showroomId?: string }>()
 );
 
 export const linkShowroom_showroomVehicleList = createAction(
   '[Showroom Vehicle List] Link Showroom',
-  props<{ registrationNumber: string; showroomId?: string }>()
+  props<{ registrationMark: string; showroomId?: string }>()
 );
 
 export const publicActions = {

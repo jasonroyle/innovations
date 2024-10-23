@@ -13,8 +13,8 @@ export const vehicleResolver: ResolveFn<VehiclesEntity | undefined> = (
 ) => {
   const vehiclesFacade = inject(VehiclesFacade);
   return vehiclesFacade
-    .selectVehicleByRegistrationNumber(
-      route.paramMap.get('registrationNumber') ?? ''
+    .selectVehicleByRegistrationMark(
+      route.paramMap.get('registrationMark') ?? ''
     )
     .pipe(take(1));
 };

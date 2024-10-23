@@ -7,11 +7,11 @@ import { StoreModule } from '@ngrx/store';
 import { VehiclesEffects } from './+state/vehicles.effects';
 import { VehiclesFacade } from './+state/vehicles.facade';
 import * as fromVehicles from './+state/vehicles.reducer';
-import { RegistrationNumberPipe } from './pipes/registration-number/registration-number.pipe';
+import { VehicleRegistrationMarkPipe } from './pipes/registration-number/registration-number.pipe';
 import { VehiclesService } from './services/vehicles.service';
 import { VehicleLabelComponent } from './components/vehicle-label/vehicle-label.component';
 
-const exports = [RegistrationNumberPipe, VehicleLabelComponent];
+const exports = [VehicleRegistrationMarkPipe, VehicleLabelComponent];
 
 @NgModule({
   imports: [

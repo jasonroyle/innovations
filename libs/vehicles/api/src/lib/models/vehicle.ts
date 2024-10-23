@@ -3,6 +3,6 @@ export interface Vehicle {
   manufacturerId: string;
   model: string;
   price: number;
-  registrationNumber: string;
+  registrationMark: string;
   showroomId?: string;
 }

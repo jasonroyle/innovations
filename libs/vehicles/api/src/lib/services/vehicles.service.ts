@@ -103,7 +103,7 @@ function mockVehiclePrice(manufacturerId: string, model: string): number {
   );
 }
 
-function mockVehicleRegistrationNumber(): string {
+function mockVehicleRegistrationMark(): string {
   const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const numeric = '0123456789';
   let chars = alpha;
@@ -115,8 +115,8 @@ function mockVehicleRegistrationNumber(): string {
   return reg;
 }
 
-function mockVehicle(registrationNumber?: string): Vehicle {
-  if (!registrationNumber) registrationNumber = mockVehicleRegistrationNumber();
+function mockVehicle(registrationMark?: string): Vehicle {
+  if (!registrationMark) registrationMark = mockVehicleRegistrationMark();
   const manufacturerId = mockVehicleManufacturerId();
   const model = mockVehicleModel(manufacturerId);
   return {
@@ -124,14 +124,14 @@ function mockVehicle(registrationNumber?: string): Vehicle {
     manufacturerId,
     model,
     price: mockVehiclePrice(manufacturerId, model),
-    registrationNumber,
+    registrationMark,
   };
 }
 
 @Injectable()
 export class VehiclesService {
-  public loadVehicle(registrationNumber: string): Vehicle {
-    return mockVehicle(registrationNumber);
+  public loadVehicle(registrationMark: string): Vehicle {
+    return mockVehicle(registrationMark);
   }
 
   public loadVehicles(): Vehicle[] {

@@ -43,10 +43,10 @@ export const selectEntity = createSelector(
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
 );
 
-export const selectEntityByRegistrationNumber = (registrationNumber: string) =>
+export const selectEntityByRegistrationMark = (registrationMark: string) =>
   createSelector(
     selectVehiclesEntities,
-    (vehicles) => vehicles[registrationNumber]
+    (vehicles) => vehicles[registrationMark]
   );
 
 export const selectSearchTerm = createSelector(

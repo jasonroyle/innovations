@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'registrationNumber',
+  name: 'vehicleRegistrationMark',
 })
-export class RegistrationNumberPipe implements PipeTransform {
+export class VehicleRegistrationMarkPipe implements PipeTransform {
   transform(value: unknown): string | null {
     if (typeof value !== 'string') return null;
     if (value.length !== 7 || /[^a-z0-9]/i.test(value)) return value;

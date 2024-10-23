@@ -42,8 +42,8 @@ export class ShowroomDetailComponent {
   }
 
   public onVehicleSelect({
-    vehicle: { registrationNumber },
+    vehicle: { registrationMark },
   }: VehicleDetail): void {
-    this._router.navigate(['/vehicles', registrationNumber]);
+    this._router.navigate(['/vehicles', registrationMark]);
   }
 }

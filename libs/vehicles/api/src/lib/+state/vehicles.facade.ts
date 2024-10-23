@@ -33,9 +33,9 @@ export class VehiclesFacade {
     return this.store.dispatch(action);
   }
 
-  selectVehicleByRegistrationNumber(id: string) {
+  selectVehicleByRegistrationMark(id: string) {
     return this.store.pipe(
-      select(VehiclesSelectors.selectEntityByRegistrationNumber(id))
+      select(VehiclesSelectors.selectEntityByRegistrationMark(id))
     );
   }
 }

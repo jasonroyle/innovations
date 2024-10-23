@@ -21,7 +21,9 @@
     <a [routerLink]="['/showrooms', showroom.slug]">{{ showroom.name }}</a>
   </dd>
   }
-  <dt>Registration Number</dt>
-  <dd>{{ vehicleDetail.vehicle.registrationNumber | registrationNumber }}</dd>
+  <dt>Registration Mark</dt>
+  <dd>
+    {{ vehicleDetail.vehicle.registrationMark | vehicleRegistrationMark }}
+  </dd>
 </dl>
 }
