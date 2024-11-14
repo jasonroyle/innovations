@@ -3,7 +3,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
   SHOWROOMS_FEATURE_KEY,
   ShowroomsState,
-  showroomsAdapter,
+  showroomsEntityAdapter,
 } from './showrooms.reducer';
 
 // Lookup the 'Showrooms' feature state managed by NgRx
@@ -11,7 +11,7 @@ export const selectShowroomsState = createFeatureSelector<ShowroomsState>(
   SHOWROOMS_FEATURE_KEY
 );
 
-const { selectAll, selectEntities } = showroomsAdapter.getSelectors();
+const { selectAll, selectEntities } = showroomsEntityAdapter.getSelectors();
 
 export const selectShowroomsLoaded = createSelector(
   selectShowroomsState,
