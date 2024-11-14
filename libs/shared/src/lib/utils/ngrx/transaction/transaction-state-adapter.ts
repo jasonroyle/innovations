@@ -1,6 +1,7 @@
 import { CompleteTransaction } from './complete-transaction';
 import { TransactionsState } from './models/state';
 import {
+  CompleteTransactionStatus,
   DispatchId,
   TransactionId,
   TransactionStatus,
@@ -106,6 +107,49 @@ export class TransactionStateAdapter<SuccessFeedback, FailureFeedback> {
   }
 
   /**
+   * Update the status of a dispatch to failed.
+   * @param dispatchId Dispatch ID
+   * @param feedback Feedback
+   * @param state State
+   * @returns State
+   */
+  failed<State extends TransactionsState<SuccessFeedback, FailureFeedback>>(
+    dispatchId: DispatchId,
+    feedback: FailureFeedback,
+    state: State
+  ): State {
+    return this.update(dispatchId, TransactionStatus.Failed, feedback, state);
+  }
+
+  /**
+   * Log a new dispatch.
+   * @param transaction Dispatch ID
+   * @param state State
+   * @returns State
+   */
+  pending<State extends TransactionsState<SuccessFeedback, FailureFeedback>>(
+    transaction: DispatchId,
+    state: State
+  ): State {
+    return this.add(transaction, state);
+  }
+
+  /**
+   * Update the status of a dispatch to success.
+   * @param dispatchId Dispatch ID
+   * @param feedback Feedback
+   * @param state State
+   * @returns State
+   */
+  success<State extends TransactionsState<SuccessFeedback, FailureFeedback>>(
+    dispatchId: DispatchId | string,
+    feedback: SuccessFeedback,
+    state: State
+  ): State {
+    return this.update(dispatchId, TransactionStatus.Success, feedback, state);
+  }
+
+  /**
    * Update the status of a dispatch.
    * @param dispatchId Dispatch ID
    * @param status Status
@@ -113,27 +157,21 @@ export class TransactionStateAdapter<SuccessFeedback, FailureFeedback> {
    * @param state State
    * @returns State
    */
-  updateStatus<
-    State extends TransactionsState<SuccessFeedback, FailureFeedback>
-  >(
+  update<State extends TransactionsState<SuccessFeedback, FailureFeedback>>(
     dispatchId: DispatchId | string,
     status: TransactionStatus.Failed,
     feedback: FailureFeedback,
     state: State
   ): State;
-  updateStatus<
-    State extends TransactionsState<SuccessFeedback, FailureFeedback>
-  >(
+  update<State extends TransactionsState<SuccessFeedback, FailureFeedback>>(
     dispatchId: DispatchId | string,
     status: TransactionStatus.Success,
     feedback: SuccessFeedback,
     state: State
   ): State;
-  updateStatus<
-    State extends TransactionsState<SuccessFeedback, FailureFeedback>
-  >(
+  update<State extends TransactionsState<SuccessFeedback, FailureFeedback>>(
     dispatchId: DispatchId | string,
-    status: TransactionStatus,
+    status: CompleteTransactionStatus,
     feedback: FailureFeedback | SuccessFeedback,
     state: State
   ): State {

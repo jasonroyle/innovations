@@ -47,22 +47,20 @@ createReducer(
   initialState,
   on(createContact, (state, { transaction }) =>
     // Log a dispatch
-    contactTransactionAdapter.add(transaction, state)
+    contactTransactionAdapter.pending(transaction, state)
   ),
   on(createContactSuccess, (state, { contact, transaction }) =>
-    // Update the status to successful
-    contactTransactionAdapter.updateStatus(
+    // Update the status to success
+    contactTransactionAdapter.success(
       transaction, // Dispatch ID
-      TransactionStatus.Success, // Success status
       { contact }, // Success feedback
       { ...state, contacts: [...state.contacts, contact] }
     )
   ),
   on(createContactFailure, (state, { error, transaction }) =>
     // Updated the status to failed
-    contactTransactionAdapter.updateStatus(
+    contactTransactionAdapter.failed(
       transaction, // Dispatch ID
-      TransactionStatus.Failed, // Failed status
       error, // Failure feedback
       state
     )
@@ -282,11 +280,14 @@ class TransactionStateAdapter
 
 #### Properties
 
-| Name                                                                                                                            | Description                      |
-| ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| `add(transaction: DispatchId, state: State): State`                                                                             | Log a new dispatch.              |
-| `clear(transactionId: TransactionId \| string, state: State): State`                                                            | Clear a transaction.             |
-| `clearAll(state: State): State`                                                                                                 | Clear all transactions.          |
-| `clearComplete(state: State): State`                                                                                            | Clear complete transactions.     |
-| `clearDispatch(dispatchId: DispatchId \| string, state: State): State`                                                          | Clear a dispatch.                |
-| `updateStatus(dispatchId: TransactionDispatchId \| string, status: TransactionStatus, feedback: Feedback, state: State): State` | Update the status of a dispatch. |
+| Name                                                                                                           | Description                                 |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| `add(transaction: DispatchId, state: State): State`                                                            | Log a new dispatch.                         |
+| `clear(transactionId: TransactionId \| string, state: State): State`                                           | Clear a transaction.                        |
+| `clearAll(state: State): State`                                                                                | Clear all transactions.                     |
+| `clearComplete(state: State): State`                                                                           | Clear complete transactions.                |
+| `clearDispatch(dispatchId: DispatchId \| string, state: State): State`                                         | Clear a dispatch.                           |
+| `failed(dispatchId: DispatchId \| string, feedback: Feedback, state: State): State`                            | Update the status of a dispatch to failed.  |
+| `pending(dispatchId: DispatchId \| string, state: State): State`                                               | Log a new dispatch.                         |
+| `success(dispatchId: DispatchId \| string, feedback: Feedback, state: State): State`                           | Update the status of a dispatch to success. |
+| `update(dispatchId: DispatchId \| string, status: TransactionStatus, feedback: Feedback, state: State): State` | Update the status of a dispatch.            |
