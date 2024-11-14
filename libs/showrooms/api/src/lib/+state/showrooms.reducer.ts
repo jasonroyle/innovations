@@ -1,6 +1,5 @@
 import {
   StoreHydration,
-  TransactionStatus,
   TransactionsState,
   createTransactionAdapter,
 } from '@innovations/shared';
@@ -60,25 +59,19 @@ const reducer = createReducer(
     error,
   })),
   on(ShowroomsActions.addShowroom_addShowroom, (state, { transaction }) =>
-    showroomsTransactionAdapter.add(transaction, state)
+    showroomsTransactionAdapter.pending(transaction, state)
   ),
   on(
     ShowroomsActions.addShowroomFailure_addShowroom,
     (state, { error, transaction }) =>
-      showroomsTransactionAdapter.updateStatus(
-        transaction,
-        TransactionStatus.Failed,
-        error,
-        state
-      )
+      showroomsTransactionAdapter.failed(transaction, error, state)
   ),
   on(
     ShowroomsActions.addShowroomSuccess_addShowroom,
     (state, { showroom, transaction }) => {
       state = showroomsEntityAdapter.addOne(showroom, state);
-      return showroomsTransactionAdapter.updateStatus(
+      return showroomsTransactionAdapter.success(
         transaction,
-        TransactionStatus.Success,
         { showroom },
         state
       );
