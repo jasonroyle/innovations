@@ -1,4 +1,9 @@
-import { StoreHydration } from '@innovations/shared';
+import {
+  StoreHydration,
+  TransactionStatus,
+  TransactionsState,
+  createTransactionAdapter,
+} from '@innovations/shared';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { MetaReducer, createReducer, on, Action } from '@ngrx/store';
 
@@ -7,7 +12,15 @@ import { ShowroomsEntity } from './showrooms.models';
 
 export const SHOWROOMS_FEATURE_KEY = 'showrooms';
 
-export interface ShowroomsState extends EntityState<ShowroomsEntity> {
+export interface SuccessFeedback {
+  showroom: ShowroomsEntity;
+}
+
+export type FailureFeedback = string;
+
+export interface ShowroomsState
+  extends EntityState<ShowroomsEntity>,
+    TransactionsState<SuccessFeedback, FailureFeedback> {
   searchTerm?: string;
   selectedId?: string; // which Showrooms record has been selected
   loaded: boolean; // has the Showrooms list been loaded
@@ -18,14 +31,19 @@ export interface ShowroomsPartialState {
   readonly [SHOWROOMS_FEATURE_KEY]: ShowroomsState;
 }
 
-export const showroomsAdapter: EntityAdapter<ShowroomsEntity> =
+export const showroomsEntityAdapter: EntityAdapter<ShowroomsEntity> =
   createEntityAdapter<ShowroomsEntity>();
 
-export const initialShowroomsState: ShowroomsState =
-  showroomsAdapter.getInitialState({
-    // set initial required properties
-    loaded: false,
-  });
+export const showroomsTransactionAdapter = createTransactionAdapter<
+  SuccessFeedback,
+  FailureFeedback
+>();
+
+export const initialShowroomsState: ShowroomsState = {
+  loaded: false,
+  ...showroomsEntityAdapter.getInitialState(),
+  ...showroomsTransactionAdapter.getInitialState(),
+};
 
 const reducer = createReducer(
   initialShowroomsState,
@@ -35,14 +53,36 @@ const reducer = createReducer(
     error: null,
   })),
   on(ShowroomsActions.loadShowroomsSuccess, (state, { showrooms }) =>
-    showroomsAdapter.setAll(showrooms, { ...state, loaded: true })
+    showroomsEntityAdapter.setAll(showrooms, { ...state, loaded: true })
   ),
   on(ShowroomsActions.loadShowroomsFailure, (state, { error }) => ({
     ...state,
     error,
   })),
-  on(ShowroomsActions.addShowroom_addShowroom, (state, { showroom }) =>
-    showroomsAdapter.addOne(showroom, { ...state })
+  on(ShowroomsActions.addShowroom_addShowroom, (state, { transaction }) =>
+    showroomsTransactionAdapter.add(transaction, state)
+  ),
+  on(
+    ShowroomsActions.addShowroomFailure_addShowroom,
+    (state, { error, transaction }) =>
+      showroomsTransactionAdapter.updateStatus(
+        transaction,
+        TransactionStatus.Failed,
+        error,
+        state
+      )
+  ),
+  on(
+    ShowroomsActions.addShowroomSuccess_addShowroom,
+    (state, { showroom, transaction }) => {
+      state = showroomsEntityAdapter.addOne(showroom, state);
+      return showroomsTransactionAdapter.updateStatus(
+        transaction,
+        TransactionStatus.Success,
+        { showroom },
+        state
+      );
+    }
   ),
   on(
     ShowroomsActions.searchShowrooms_showroomList,
@@ -59,7 +99,13 @@ const reducer = createReducer(
   on(
     ShowroomsActions.updateShowroom_editShowroom,
     (state, { showroom: { id, ...showroom } }) =>
-      showroomsAdapter.updateOne({ id, changes: showroom }, { ...state })
+      showroomsEntityAdapter.updateOne({ id, changes: showroom }, { ...state })
+  ),
+  on(ShowroomsActions.clearTransaction_addShowroom, (state, { transaction }) =>
+    showroomsTransactionAdapter.clear(transaction, state)
+  ),
+  on(ShowroomsActions.clearCompleteTransactions_addShowroom, (state) =>
+    showroomsTransactionAdapter.clearComplete(state)
   )
 );
 

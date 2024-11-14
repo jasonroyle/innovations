@@ -10,6 +10,11 @@ export class ShowroomsFacade {
   private readonly store: Store<ShowroomsFeature.ShowroomsPartialState> =
     inject(Store);
   public readonly actions = ShowroomsActions.publicActions;
+  public readonly transactions =
+    ShowroomsFeature.showroomsTransactionAdapter.getFacade(
+      this.store,
+      ShowroomsSelectors.selectShowroomsState
+    );
 
   /**
    * Combine pieces of state using createSelector,
