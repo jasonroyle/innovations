@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ManufacturersFacade } from '@innovations/manufacturers-api';
+import { TransactionStatus } from '@innovations/shared';
 import {
   ShowroomsEntity,
   ShowroomsFacade,
@@ -40,9 +41,24 @@ export class AddShowroomComponent {
       name,
       slug,
     };
-    this._showroomsFacade.dispatch(
-      this._showroomsFacade.actions.addShowroom_addShowroom({ showroom })
+
+    const transaction = this._showroomsFacade.transactions.startTransaction();
+    const dispatch = transaction.prepareDispatch();
+    dispatch.complete$.subscribe(({ feedback, status }) => {
+      if (status === TransactionStatus.Success) {
+        alert(`Successfully created ${feedback.showroom.name}!`);
+        this.showroomForm.reset();
+      } else {
+        alert(`Unable to create showroom. ${feedback}`);
+      }
+    });
+    dispatch.dispatch(
+      this._showroomsFacade.actions.addShowroom_addShowroom(
+        dispatch.props({ showroom })
+      )
     );
-    this.showroomForm.reset();
+    transaction.ready(
+      this._showroomsFacade.actions.clearCompleteTransactions_addShowroom()
+    );
   }
 }

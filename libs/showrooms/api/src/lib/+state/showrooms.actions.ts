@@ -1,4 +1,6 @@
+import { DispatchProps, TransactionProps } from '@innovations/shared';
 import { createAction, props } from '@ngrx/store';
+
 import { ShowroomsEntity } from './showrooms.models';
 
 export const initShowrooms = createAction('[Showrooms Page] Init');
@@ -15,7 +17,17 @@ export const loadShowroomsFailure = createAction(
 
 export const addShowroom_addShowroom = createAction(
   '[Add Showroom] Add Showroom',
-  props<{ showroom: ShowroomsEntity }>()
+  props<DispatchProps<{ showroom: ShowroomsEntity }>>()
+);
+
+export const addShowroomFailure_addShowroom = createAction(
+  '[Add Showroom] Add Showroom Failure',
+  props<DispatchProps<{ error: string }>>()
+);
+
+export const addShowroomSuccess_addShowroom = createAction(
+  '[Add Showroom] Add Showroom Success',
+  props<DispatchProps<{ showroom: ShowroomsEntity }>>()
 );
 
 export const searchShowrooms_showroomList = createAction(
@@ -38,8 +50,18 @@ export const updateShowroom_editShowroom = createAction(
   props<{ showroom: ShowroomsEntity }>()
 );
 
+export const clearTransaction_addShowroom = createAction(
+  '[Add Showroom] Clear Transaction',
+  props<TransactionProps>()
+);
+
+export const clearCompleteTransactions_addShowroom = createAction(
+  '[Add Showroom] Clear Complete Transactions'
+);
+
 export const publicActions = {
   addShowroom_addShowroom,
+  clearCompleteTransactions_addShowroom,
   searchShowrooms_showroomList,
   selectShowroom_editShowroom,
   selectShowroom_showroomDetail,
