@@ -89,7 +89,7 @@ createContact$ = createEffect(() =>
         catchError((error) => {
           console.error('Error', error);
           return of(
-            ShowroomsActions.addShowroomFailure_addShowroom({
+            createContactFailure({
               error: String(error),
               transaction,
             })
